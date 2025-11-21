@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张明博士 - 个人学术主页</title>
+    <!-- 引入 Tailwind CSS CDN，用于快速和响应式设计 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 使用 Inter 字体以获得干净、现代的学术外观 */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* 浅灰色背景 */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 导航栏和主要信息区 -->
+    <header class="bg-blue-800 shadow-lg sticky top-0 z-10">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row justify-between items-center">
+            <!-- 姓名和标题 -->
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <h1 class="text-3xl font-bold text-white tracking-tight">张明 (Ming Zhang)</h1>
+                <p class="text-lg text-blue-200">计算机科学系 | 助理教授 | 某大学</p>
+            </div>
+            
+            <!-- 导航链接 -->
+            <nav class="flex space-x-6">
+                <a href="#about" class="text-white hover:text-blue-200 transition duration-150 font-medium">关于我</a>
+                <a href="#research" class="text-white hover:text-blue-200 transition duration-150 font-medium">研究</a>
+                <a href="#publications" class="text-white hover:text-blue-200 transition duration-150 font-medium">出版物</a>
+                <a href="#contact" class="text-white hover:text-blue-200 transition duration-150 font-medium">联系方式</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+        
+        <!-- 关于我/个人简介 -->
+        <section id="about" class="bg-white p-6 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+            <h2 class="text-3xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 text-blue-800">关于我</h2>
+            <div class="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-8">
+                <!-- 个人照片（请替换为您自己的照片URL） -->
+                <img src="https://placehold.co/150x150/1e3a8a/ffffff?text=Your+Photo" 
+                     alt="张明博士照片" 
+                     class="rounded-full w-32 h-32 object-cover border-4 border-blue-500 shadow-md flex-shrink-0 mx-auto md:mx-0">
+                
+                <!-- 简介文本 -->
+                <div class="text-gray-600">
+                    <p class="mb-4 leading-relaxed">
+                        我是张明，在某大学计算机科学系担任助理教授。我的研究兴趣主要集中在人工智能的可解释性、强化学习及其在医疗领域的应用。我致力于开发安全、透明且高效的AI系统。
+                    </p>
+                    <p class="mb-4 leading-relaxed">
+                        我在2020年获得了某知名大学的计算机科学博士学位，随后在某研究所进行了为期两年的博士后研究。我欢迎对我的研究方向感兴趣的学生与我联系。
+                    </p>
+                    <a href="cv_placeholder.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 font-semibold inline-flex items-center mt-2">
+                        下载完整简历 (PDF) 
+                        <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究兴趣 -->
+        <section id="research" class="bg-white p-6 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+            <h2 class="text-3xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 text-blue-800">研究兴趣</h2>
+            <ul class="list-disc list-inside space-y-3 text-gray-600 ml-4">
+                <li class="pl-2">可解释性人工智能 (XAI) 与模型透明度。</li>
+                <li class="pl-2">基于深度学习的强化学习算法。</li>
+                <li class="pl-2">AI 在临床决策支持系统中的应用。</li>
+                <li class="pl-2">大规模图神经网络。</li>
+            </ul>
+        </section>
+
+        <!-- 主要出版物 -->
+        <section id="publications" class="bg-white p-6 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+            <h2 class="text-3xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 text-blue-800">精选出版物</h2>
+            
+            <div class="space-y-6">
+                <!-- 出版物 1 -->
+                <div class="border-l-4 border-blue-500 pl-4 py-1">
+                    <p class="font-bold text-lg text-gray-800 mb-1">
+                        一种基于因果推断的跨领域可解释性框架
+                    </p>
+                    <p class="text-sm text-gray-500 mb-2">
+                        **作者:** ZHANG M., Li J., Wang H.
+                    </p>
+                    <p class="italic text-gray-600 text-sm">
+                        《人工智能顶级会议论文集》 (Proc. AAAI), 2024.
+                    </p>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">
+                        [PDF]
+                    </a>
+                    <span class="mx-2 text-gray-400">|</span>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">
+                        [代码]
+                    </a>
+                </div>
+
+                <!-- 出版物 2 -->
+                <div class="border-l-4 border-blue-500 pl-4 py-1">
+                    <p class="font-bold text-lg text-gray-800 mb-1">
+                        多智能体系统中基于注意力机制的协作学习
+                    </p>
+                    <p class="text-sm text-gray-500 mb-2">
+                        **作者:** Wang Y., ZHANG M.
+                    </p>
+                    <p class="italic text-gray-600 text-sm">
+                        《IEEE 模式分析与机器智能汇刊》 (IEEE TPAMI), Vol. 46, No. 3, 2024.
+                    </p>
+                    <a href="#" class="text-sm text-blue-600 hover:text-blue-800">
+                        [PDF]
+                    </a>
+                </div>
+                
+                <p class="text-center pt-4">
+                    <a href="all_publications_placeholder.html" class="text-blue-700 hover:underline font-medium">查看所有出版物</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- 联系方式 -->
+        <section id="contact" class="bg-white p-6 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+            <h2 class="text-3xl font-semibold border-b-2 border-blue-400 pb-2 mb-6 text-blue-800">联系方式</h2>
+            <div class="space-y-4 text-gray-600">
+                <p>
+                    **电子邮件:** <a href="mailto:your.email@university.edu" class="text-blue-600 hover:underline">your.email@university.edu</a>
+                </p>
+                <p>
+                    **办公地址:** 某大学，计算机科学系，教学楼A座 405室
+                </p>
+                <p>
+                    **GitHub:** <a href="https://github.com/yourusername" target="_blank" class="text-blue-600 hover:underline">github.com/yourusername</a>
+                </p>
+                <p>
+                    **LinkedIn/ORCID:** <a href="#" target="_blank" class="text-blue-600 hover:underline">[您的学术档案链接]</a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-blue-900 mt-10 py-6">
+        <div class="max-w-4xl mx-auto px-4 text-center text-sm text-blue-200">
+            &copy; 2024 张明. 保留所有权利. | 网站由 GitHub Pages 托管.
+        </div>
+    </footer>
+</body>
+</html>
