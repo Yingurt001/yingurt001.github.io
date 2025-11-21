@@ -1,0 +1,475 @@
+/* 学术网站样式 */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 导航栏 */
+.navbar {
+    background-color: #1e3a8a;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    border-bottom-color: white;
+}
+
+.nav-links a svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* 主容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+}
+
+/* 左侧栏 */
+.sidebar {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+}
+
+.profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 3px solid #1e3a8a;
+}
+
+.sidebar h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar .title {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.sidebar .affiliation {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.sidebar .address {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.email a {
+    color: #1e3a8a;
+    text-decoration: none;
+}
+
+.email a:hover {
+    text-decoration: underline;
+}
+
+.copy-icon {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+}
+
+.copy-icon:hover {
+    opacity: 1;
+}
+
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 1;
+}
+
+.social-links img {
+    width: 100%;
+    height: 100%;
+}
+
+.call-to-action {
+    background-color: #dc2626;
+    color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.call-to-action a {
+    color: white;
+    text-decoration: underline;
+}
+
+.last-updated {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* 右侧内容区 */
+.content {
+    min-height: 600px;
+}
+
+.content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #0ea5e9;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.content li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.content li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #1e3a8a;
+    font-weight: bold;
+}
+
+.research-tags {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.publication-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.publication-item:last-child {
+    border-bottom: none;
+}
+
+.publication-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+.publication-title a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.publication-title a:hover {
+    text-decoration: underline;
+}
+
+.publication-authors {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.publication-venue {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 0.75rem;
+}
+
+.publication-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.publication-links a,
+.publication-links button {
+    background-color: #f3f4f6;
+    border: 1px solid #d1d5db;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #374151;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.publication-links a:hover,
+.publication-links button:hover {
+    background-color: #e5e7eb;
+}
+
+.education-item,
+.experience-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.education-item:last-child,
+.experience-item:last-child {
+    border-bottom: none;
+}
+
+.degree-title,
+.job-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0ea5e9;
+    margin-bottom: 0.5rem;
+}
+
+.institution,
+.company {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.degree-meta,
+.job-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+}
+
+.degree-info,
+.job-info {
+    flex: 1;
+}
+
+.degree-dates,
+.job-dates {
+    text-align: right;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.degree-location,
+.job-location {
+    text-align: right;
+    color: #666;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+.honor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.honor-icon {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.honor-text {
+    flex: 1;
+}
+
+.honor-year {
+    font-weight: 700;
+    color: #333;
+}
+
+/* 页脚 */
+.footer {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-links img {
+    width: 24px;
+    height: 24px;
+}
+
+.footer-copyright {
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 968px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .sidebar {
+        position: static;
+        text-align: center;
+    }
+    
+    .profile-img {
+        margin: 0 auto 1.5rem;
+    }
+    
+    .nav-links {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+    
+    .degree-meta,
+    .job-meta {
+        flex-direction: column;
+    }
+    
+    .degree-dates,
+    .job-dates,
+    .degree-location,
+    .job-location {
+        text-align: left;
+        margin-top: 0.5rem;
+    }
+}
+
+/* 工具类 */
+.text-center {
+    text-align: center;
+}
+
+.mt-2 {
+    margin-top: 0.5rem;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+

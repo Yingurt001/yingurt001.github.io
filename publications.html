@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>张明 - 个人学术主页</title>
+    <title>Publications - 张明</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,11 +11,11 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-links">
-                <a href="index.html" class="active">
+                <a href="index.html">
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
                     Home
                 </a>
-                <a href="publications.html">
+                <a href="publications.html" class="active">
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg>
                     Publications
                 </a>
@@ -51,9 +51,7 @@
         </div>
     </nav>
 
-    <!-- 主容器 -->
     <div class="container">
-        <!-- 左侧栏 -->
         <aside class="sidebar">
             <img src="https://placehold.co/200x200/1e3a8a/ffffff?text=Your+Photo" alt="张明" class="profile-img">
             <h1>张明 (Ming Zhang)</h1>
@@ -82,56 +80,119 @@
             <p class="last-updated">Last Updated: November 2024</p>
         </aside>
 
-        <!-- 右侧内容区 -->
         <main class="content">
-            <h2>ABOUT ME</h2>
-            <p>
-                我是张明，某大学计算机科学与工程系助理教授。我在2020年获得某知名大学的计算机科学博士学位，随后在某研究所进行了为期两年的博士后研究。我目前领导软件工程与安全研究实验室（S²E Lab）。
-            </p>
-            <p>
-                我的研究兴趣主要集中在人工智能的可解释性、强化学习及其在医疗领域的应用。我致力于开发安全、透明且高效的AI系统。
-            </p>
-            <p>
-                我在2017年IEEE国际软件架构会议（ICSA）上获得了"最佳论文奖"，论文题目为"理解与架构安全策略相关的软件漏洞：对Chromium、PHP和Thunderbird的实证研究"。
-            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2>PUBLICATIONS</h2>
+                <div style="font-size: 0.9rem; color: #666;">
+                    See also on: 
+                    <a href="#" style="color: #3b82f6; text-decoration: none; margin-left: 0.5rem;">Google Scholar</a> | 
+                    <a href="#" style="color: #3b82f6; text-decoration: none;">DBLP</a> | 
+                    <a href="#" style="color: #3b82f6; text-decoration: none;">ResearchGate</a> | 
+                    <a href="#" style="color: #3b82f6; text-decoration: none;">ORCID</a>
+                </div>
+            </div>
 
-            <h2>RESEARCH INTERESTS</h2>
-            <p>我的主要研究兴趣在软件工程和安全领域：</p>
-            <ul>
-                <li>
-                    代码生成
-                    <span class="research-tags">NAACL 2025 Findings, SIGCSE 2025, ICPC 2024</span>
-                </li>
-                <li>
-                    软件安全
-                    <span class="research-tags">TSE 2023, FSE 2019, JSS 2019, ICSA 2017</span>
-                </li>
-                <li>
-                    程序分析与源代码操作
-                    <span class="research-tags">OOPSLA 2024, SCAM 2022, SOAP 2021</span>
-                </li>
-                <li>
-                    软件架构
-                    <span class="research-tags">ICSA 2021, ICSA 2020, EMSE 2016</span>
-                </li>
-                <li>
-                    量子软件工程
-                    <span class="research-tags">QUASAR 2025</span>
-                </li>
-            </ul>
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">攻击可解释的NLP系统</a>
+                </div>
+                <div class="publication-authors">
+                    <strong>张明</strong>, Li J., Wang H., Chen Y.
+                </div>
+                <div class="publication-venue">
+                    In: TIFS IEEE TRANSACTIONS ON INFORMATION FORENSICS AND SECURITY. 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(1)">BibTex</button>
+                    <a href="#">Preprint</a>
+                    <a href="#">doi 10.1109/TIFS.2025.3622073 <svg style="width: 12px; height: 12px; display: inline;" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg></a>
+                </div>
+            </div>
 
-            <h2>HONORS & AWARDS</h2>
-            <ul>
-                <li><strong>2023</strong> - ESEC/FSE 2023 杰出评审奖</li>
-                <li><strong>2020</strong> - 在 JOBS Workshop @MICRO'20 研究竞赛中获胜</li>
-                <li><strong>2017</strong> - ICSA'17 最佳论文奖</li>
-                <li><strong>2014</strong> - 获得CAPES奖学金在某大学攻读硕士学位</li>
-                <li><strong>2013</strong> - 发表的论文在 WTICGBASE - XIII ERBASE 中排名第3</li>
-            </ul>
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">编程中的大语言模型：实证研究</a>
+                </div>
+                <div class="publication-authors">
+                    Wang Y., <strong>张明</strong>, Liu X.
+                </div>
+                <div class="publication-venue">
+                    In: Proceedings of the 2025 Conference on Neural Information Processing Systems (NeurIPS). 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(2)">BibTex</button>
+                    <a href="#">Preprint</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">基于量子计算的SMT求解</a>
+                </div>
+                <div class="publication-authors">
+                    Chen Y., <strong>张明</strong>, Zhang L.
+                </div>
+                <div class="publication-venue">
+                    In: Proceedings of the 2025 International Conference on Software Engineering (ICSE). 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(3)">BibTex</button>
+                    <a href="#">Preprint</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">用于网络安全的源代码表示学习</a>
+                </div>
+                <div class="publication-authors">
+                    <strong>张明</strong>, Li J., Wang H.
+                </div>
+                <div class="publication-venue">
+                    In: IEEE Transactions on Software Engineering (TSE). 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(4)">BibTex</button>
+                    <a href="#">Preprint</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">语言模型基准测试：新视角</a>
+                </div>
+                <div class="publication-authors">
+                    Liu X., <strong>张明</strong>, Chen Y.
+                </div>
+                <div class="publication-venue">
+                    In: Proceedings of the 2025 Annual Meeting of the Association for Computational Linguistics (ACL). 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(5)">BibTex</button>
+                    <a href="#">Preprint</a>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="#">计算机科学教育中的大语言模型</a>
+                </div>
+                <div class="publication-authors">
+                    <strong>张明</strong>, Wang Y., Li J.
+                </div>
+                <div class="publication-venue">
+                    In: Proceedings of the 2025 ACM Technical Symposium on Computer Science Education (SIGCSE). 2025.
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(6)">BibTex</button>
+                    <a href="#">Preprint</a>
+                    <a href="#">GitHub</a>
+                </div>
+            </div>
         </main>
     </div>
 
-    <!-- 页脚 -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -154,6 +215,51 @@
                 alert('邮箱地址已复制到剪贴板');
             });
         }
+
+        function copyBibtex(id) {
+            const bibtexEntries = {
+                1: `@article{zhang2025attacking,
+  title={攻击可解释的NLP系统},
+  author={张明 and Li, J. and Wang, H. and Chen, Y.},
+  journal={IEEE Transactions on Information Forensics and Security},
+  year={2025}
+}`,
+                2: `@inproceedings{wang2025llm,
+  title={编程中的大语言模型：实证研究},
+  author={Wang, Y. and 张明 and Liu, X.},
+  booktitle={Proceedings of NeurIPS},
+  year={2025}
+}`,
+                3: `@inproceedings{chen2025quantum,
+  title={基于量子计算的SMT求解},
+  author={Chen, Y. and 张明 and Zhang, L.},
+  booktitle={Proceedings of ICSE},
+  year={2025}
+}`,
+                4: `@article{zhang2025source,
+  title={用于网络安全的源代码表示学习},
+  author={张明 and Li, J. and Wang, H.},
+  journal={IEEE Transactions on Software Engineering},
+  year={2025}
+}`,
+                5: `@inproceedings{liu2025benchmark,
+  title={语言模型基准测试：新视角},
+  author={Liu, X. and 张明 and Chen, Y.},
+  booktitle={Proceedings of ACL},
+  year={2025}
+}`,
+                6: `@inproceedings{zhang2025education,
+  title={计算机科学教育中的大语言模型},
+  author={张明 and Wang, Y. and Li, J.},
+  booktitle={Proceedings of SIGCSE},
+  year={2025}
+}`
+            };
+            navigator.clipboard.writeText(bibtexEntries[id]).then(() => {
+                alert('BibTeX 已复制到剪贴板');
+            });
+        }
     </script>
 </body>
 </html>
+
