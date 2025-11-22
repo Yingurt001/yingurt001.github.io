@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于模拟的推理：Neural Posterior Estimation - Ying Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content blog-post">
+            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">基于模拟的推理：Neural Posterior Estimation</h1>
+                    <div class="blog-post-meta">
+                        <span>📅 2025年1月16日</span>
+                        <span>🏷️ SBI, 贝叶斯推理, 研究</span>
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <h3>1. 什么是Simulation-Based Inference？</h3>
+                    <p>
+                        Simulation-Based Inference (SBI)，也称为Likelihood-Free Inference，是一类用于从观测数据推断模型参数的方法。当模型的似然函数难以计算或不可用时，SBI方法特别有用。
+                    </p>
+                    <p>
+                        传统的贝叶斯推理需要计算似然函数 <code>p(x|θ)</code>，但在许多复杂模型中（如生物系统、物理模拟等），这个似然函数是难以解析计算的。SBI通过模拟来解决这个问题。
+                    </p>
+
+                    <h3>2. 为什么需要SBI？</h3>
+                    <p>
+                        许多科学和工程问题涉及复杂的模拟模型：
+                    </p>
+                    <ul>
+                        <li><strong>计算生物学</strong>：基因调控网络、蛋白质折叠</li>
+                        <li><strong>天体物理学</strong>：宇宙学模拟、引力波分析</li>
+                        <li><strong>流行病学</strong>：疾病传播模型</li>
+                        <li><strong>神经科学</strong>：神经元动力学模型</li>
+                    </ul>
+                    <p>
+                        这些模型通常只能通过模拟来评估，无法直接计算似然函数。
+                    </p>
+
+                    <h3>3. SBI的基本框架</h3>
+                    <p>
+                        SBI的核心思想是：
+                    </p>
+                    <ol>
+                        <li>从先验分布 <code>p(θ)</code> 中采样参数</li>
+                        <li>使用这些参数运行模拟，生成数据 <code>x ~ p(x|θ)</code></li>
+                        <li>学习从观测数据到参数的后验映射</li>
+                    </ol>
+
+                    <h3>4. Neural Posterior Estimation (NPE)</h3>
+                    <p>
+                        Neural Posterior Estimation是SBI的一种方法，使用神经网络直接估计参数的后验分布 <code>p(θ|x)</code>。
+                    </p>
+
+                    <h4>4.1 NPE的基本原理</h4>
+                    <p>
+                        NPE训练一个神经网络 <code>q_φ(θ|x)</code> 来近似真实的后验分布 <code>p(θ|x)</code>。训练目标是最大化：
+                    </p>
+                    <pre><code>E_{p(θ,x)}[log q_φ(θ|x)]
+
+其中 p(θ,x) = p(θ) p(x|θ)</code></pre>
+
+                    <h4>4.2 训练过程</h4>
+                    <pre><code>import torch
+import torch.nn as nn
+import numpy as np
+
+class PosteriorEstimator(nn.Module):
+    def __init__(self, data_dim, param_dim, hidden_dim=128):
+        super(PosteriorEstimator, self).__init__()
+        self.net = nn.Sequential(
+            nn.Linear(data_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, param_dim * 2)  # 均值和方差
+        )
+    
+    def forward(self, x):
+        output = self.net(x)
+        mean = output[:, :self.param_dim]
+        log_std = output[:, self.param_dim:]
+        return mean, log_std
+    
+    def sample(self, x, n_samples=1000):
+        mean, log_std = self.forward(x)
+        std = torch.exp(log_std)
+        samples = torch.normal(mean, std)
+        return samples
+
+def train_npe(simulator, prior, n_simulations=10000):
+    # 生成训练数据
+    params = prior.sample((n_simulations,))
+    data = simulator(params)
+    
+    # 初始化模型
+    model = PosteriorEstimator(data_dim=data.shape[1], 
+                              param_dim=params.shape[1])
+    optimizer = torch.optim.Adam(model.parameters())
+    
+    # 训练循环
+    for epoch in range(1000):
+        # 随机打乱数据
+        indices = torch.randperm(n_simulations)
+        params_shuffled = params[indices]
+        data_shuffled = data[indices]
+        
+        # 前向传播
+        mean, log_std = model(data_shuffled)
+        std = torch.exp(log_std)
+        
+        # 计算负对数似然
+        dist = torch.distributions.Normal(mean, std)
+        loss = -dist.log_prob(params_shuffled).mean()
+        
+        # 反向传播
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        if epoch % 100 == 0:
+            print(f"Epoch {epoch}, Loss: {loss.item():.4f}")
+    
+    return model</code></pre>
+
+                    <h3>5. 条件归一化流（Conditional Normalizing Flows）</h3>
+                    <p>
+                        更高级的NPE方法使用条件归一化流来建模复杂的后验分布。归一化流能够表示任意复杂的概率分布。
+                    </p>
+
+                    <h4>5.1 归一化流基础</h4>
+                    <p>
+                        归一化流通过一系列可逆变换将一个简单分布（如标准正态分布）转换为复杂分布：
+                    </p>
+                    <pre><code>class ConditionalFlow(nn.Module):
+    def __init__(self, data_dim, param_dim, n_transforms=5):
+        super(ConditionalFlow, self).__init__()
+        self.transforms = nn.ModuleList([
+            AffineCouplingLayer(data_dim, param_dim) 
+            for _ in range(n_transforms)
+        ])
+    
+    def forward(self, params, data):
+        log_det = 0
+        z = params
+        for transform in self.transforms:
+            z, ld = transform(z, data)
+            log_det += ld
+        return z, log_det
+    
+    def inverse(self, z, data):
+        log_det = 0
+        params = z
+        for transform in reversed(self.transforms):
+            params, ld = transform.inverse(params, data)
+            log_det += ld
+        return params, log_det</code></pre>
+
+                    <h3>6. 实际应用示例</h3>
+                    <h4>6.1 简单示例：高斯模型</h4>
+                    <p>
+                        假设我们有一个简单的模型：观测数据来自高斯分布，我们想推断均值和标准差。
+                    </p>
+                    <pre><code>def gaussian_simulator(params, n_obs=100):
+    """模拟器：从高斯分布生成数据"""
+    mean, std = params[:, 0], params[:, 1]
+    data = []
+    for m, s in zip(mean, std):
+        samples = np.random.normal(m, s, n_obs)
+        # 使用摘要统计量
+        summary = np.array([np.mean(samples), np.std(samples)])
+        data.append(summary)
+    return np.array(data)
+
+# 定义先验
+from scipy.stats import uniform, gamma
+prior_mean = uniform(loc=-5, scale=10)  # 均值在[-5, 5]
+prior_std = gamma(a=2, scale=1)  # 标准差
+
+# 训练NPE模型
+model = train_npe(gaussian_simulator, prior, n_simulations=50000)
+
+# 对新观测数据进行推理
+observed_data = np.array([[2.5, 1.2]])  # 观测到的均值和标准差
+posterior_samples = model.sample(torch.tensor(observed_data, dtype=torch.float32))
+print(f"后验均值估计: {posterior_samples.mean(axis=0)}")</code></pre>
+
+                    <h3>7. 评估和验证</h3>
+                    <p>
+                        评估NPE模型质量的方法：
+                    </p>
+                    <ul>
+                        <li><strong>后验预测检查</strong>：从后验采样参数，生成模拟数据，检查是否与观测数据一致</li>
+                        <li><strong>校准检查</strong>：检查后验分位数的校准</li>
+                        <li><strong>覆盖率</strong>：检查真实参数是否落在后验置信区间内</li>
+                    </ul>
+
+                    <h3>8. 挑战和解决方案</h3>
+                    <h4>8.1 高维数据</h4>
+                    <p>
+                        当数据维度很高时，直接使用原始数据可能不高效。解决方案是使用摘要统计量（Summary Statistics）或学习摘要网络。
+                    </p>
+
+                    <h4>8.2 模拟成本</h4>
+                    <p>
+                        如果模拟非常耗时，可以使用：
+                    </p>
+                    <ul>
+                        <li>主动学习：选择最有信息量的参数进行模拟</li>
+                        <li>模拟器替代：训练神经网络替代昂贵的模拟器</li>
+                    </ul>
+
+                    <h3>9. 研究展望</h3>
+                    <p>
+                        SBI和NPE是一个快速发展的领域，未来的研究方向包括：
+                    </p>
+                    <ul>
+                        <li>更高效的归一化流架构</li>
+                        <li>处理高维参数空间的方法</li>
+                        <li>结合领域知识的约束</li>
+                        <li>不确定性量化</li>
+                    </ul>
+
+                    <h3>10. 总结</h3>
+                    <p>
+                        Simulation-Based Inference和Neural Posterior Estimation为处理复杂模型提供了强大的工具。当传统方法无法应用时，SBI使我们能够从观测数据中推断模型参数，这对于许多科学和工程问题至关重要。
+                    </p>
+                    <p>
+                        在我的EPSRC资助项目中，我们正在探索这些方法在统计建模和机器学习中的应用，希望能为这一领域做出贡献。
+                    </p>
+
+                    <blockquote>
+                        <strong>推荐资源：</strong>
+                        <ul>
+                            <li>sbi library: Python包，提供了SBI的完整实现</li>
+                            <li>Papamakarios et al. (2019): "Neural Likelihood Estimation"</li>
+                            <li>Greenberg et al. (2019): "Automatic Posterior Transformation for Likelihood-Free Inference"</li>
+                        </ul>
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+

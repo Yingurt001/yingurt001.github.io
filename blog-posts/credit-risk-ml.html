@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机器学习在信用风险分析中的应用 - Ying Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content blog-post">
+            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">机器学习在信用风险分析中的应用</h1>
+                    <div class="blog-post-meta">
+                        <span>📅 2025年1月18日</span>
+                        <span>🏷️ 信用风险, 时间序列, KAN网络</span>
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <h3>1. 引言</h3>
+                    <p>
+                        信用风险分析是金融领域的重要问题。传统的统计方法在处理复杂的非线性关系时存在局限性，而机器学习技术，特别是深度学习模型，能够从大量历史数据中学习复杂的模式，提高预测准确性。
+                    </p>
+                    <p>
+                        本文基于我在Applied Soft Computing和CSCR会议上的研究工作，分享使用KAN网络、LSTM、GRU等模型进行信用风险预测的经验。
+                    </p>
+
+                    <h3>2. 问题定义</h3>
+                    <p>
+                        信用风险预测的核心任务是：
+                    </p>
+                    <ul>
+                        <li><strong>早期预测</strong>：在贷款违约发生之前预测风险</li>
+                        <li><strong>后贷款检测</strong>：监控已发放贷款的违约风险</li>
+                        <li><strong>风险评估</strong>：量化客户的信用风险等级</li>
+                    </ul>
+
+                    <h3>3. 数据预处理</h3>
+                    <h4>3.1 数据清洗</h4>
+                    <pre><code>import pandas as pd
+import numpy as np
+
+def clean_data(df):
+    # 处理缺失值
+    df = df.dropna(subset=['target'])
+    
+    # 处理异常值
+    Q1 = df.quantile(0.25)
+    Q3 = df.quantile(0.75)
+    IQR = Q3 - Q1
+    df = df[~((df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR))).any(axis=1)]
+    
+    # 处理类别变量
+    categorical_cols = df.select_dtypes(include=['object']).columns
+    df = pd.get_dummies(df, columns=categorical_cols)
+    
+    return df</code></pre>
+
+                    <h4>3.2 特征工程</h4>
+                    <p>
+                        对于时间序列数据，我们需要创建时间特征：
+                    </p>
+                    <ul>
+                        <li>滞后特征（Lag Features）</li>
+                        <li>滚动统计特征（Rolling Statistics）</li>
+                        <li>时间特征（年、月、日等）</li>
+                        <li>交互特征（特征之间的组合）</li>
+                    </ul>
+
+                    <h3>4. 模型架构</h3>
+                    <h4>4.1 KAN网络（Kolmogorov-Arnold Networks）</h4>
+                    <p>
+                        KAN网络是一种新型的神经网络架构，使用可学习的激活函数替代传统的固定激活函数。在信用风险预测中，KAN网络能够更好地捕捉数据的非线性关系。
+                    </p>
+                    <pre><code>import torch
+import torch.nn as nn
+
+class KANLayer(nn.Module):
+    def __init__(self, in_features, out_features, grid_size=5):
+        super(KANLayer, self).__init__()
+        self.in_features = in_features
+        self.out_features = out_features
+        self.grid_size = grid_size
+        
+        # 可学习的B样条基函数系数
+        self.coeff = nn.Parameter(torch.randn(in_features, out_features, grid_size))
+        
+    def forward(self, x):
+        # B样条基函数插值
+        # 简化版本，实际实现更复杂
+        output = torch.zeros(x.shape[0], self.out_features)
+        for i in range(self.in_features):
+            for j in range(self.out_features):
+                # 使用B样条基函数进行插值
+                basis = self.bspline_basis(x[:, i])
+                output[:, j] += torch.sum(self.coeff[i, j] * basis, dim=1)
+        return output</code></pre>
+
+                    <h4>4.2 LSTM/GRU模型</h4>
+                    <p>
+                        对于时间序列数据，LSTM和GRU能够捕捉长期依赖关系：
+                    </p>
+                    <pre><code>class CreditRiskLSTM(nn.Module):
+    def __init__(self, input_size, hidden_size, num_layers, output_size):
+        super(CreditRiskLSTM, self).__init__()
+        self.hidden_size = hidden_size
+        self.num_layers = num_layers
+        
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, 
+                           batch_first=True, dropout=0.2)
+        self.fc = nn.Linear(hidden_size, output_size)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x):
+        # x shape: (batch, seq_len, input_size)
+        lstm_out, _ = self.lstm(x)
+        # 取最后一个时间步的输出
+        last_output = lstm_out[:, -1, :]
+        output = self.fc(last_output)
+        return self.sigmoid(output)</code></pre>
+
+                    <h4>4.3 ResE-BiLSTM模型</h4>
+                    <p>
+                        双向LSTM结合残差连接，能够同时考虑前向和后向的时间依赖：
+                    </p>
+                    <pre><code>class ResE_BiLSTM(nn.Module):
+    def __init__(self, input_size, hidden_size, num_layers):
+        super(ResE_BiLSTM, self).__init__()
+        self.bilstm = nn.LSTM(input_size, hidden_size, num_layers,
+                              batch_first=True, bidirectional=True)
+        self.residual = nn.Linear(input_size, hidden_size * 2)
+        self.fc = nn.Linear(hidden_size * 2, 1)
+    
+    def forward(self, x):
+        bilstm_out, _ = self.bilstm(x)
+        residual = self.residual(x[:, -1, :])
+        output = bilstm_out[:, -1, :] + residual
+        return torch.sigmoid(self.fc(output))</code></pre>
+
+                    <h3>5. 模型训练</h3>
+                    <h4>5.1 训练策略</h4>
+                    <ul>
+                        <li>使用时间序列交叉验证</li>
+                        <li>处理类别不平衡问题（使用加权损失或SMOTE）</li>
+                        <li>早停机制防止过拟合</li>
+                        <li>学习率调度</li>
+                    </ul>
+
+                    <h4>5.2 训练代码示例</h4>
+                    <pre><code>def train_model(model, train_loader, val_loader, num_epochs=100):
+    criterion = nn.BCELoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min')
+    
+    best_val_loss = float('inf')
+    patience = 10
+    patience_counter = 0
+    
+    for epoch in range(num_epochs):
+        # 训练阶段
+        model.train()
+        train_loss = 0
+        for batch_x, batch_y in train_loader:
+            optimizer.zero_grad()
+            outputs = model(batch_x)
+            loss = criterion(outputs, batch_y)
+            loss.backward()
+            optimizer.step()
+            train_loss += loss.item()
+        
+        # 验证阶段
+        model.eval()
+        val_loss = 0
+        with torch.no_grad():
+            for batch_x, batch_y in val_loader:
+                outputs = model(batch_x)
+                loss = criterion(outputs, batch_y)
+                val_loss += loss.item()
+        
+        scheduler.step(val_loss)
+        
+        # 早停检查
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+            patience_counter = 0
+            torch.save(model.state_dict(), 'best_model.pth')
+        else:
+            patience_counter += 1
+            if patience_counter >= patience:
+                print(f"Early stopping at epoch {epoch}")
+                break
+        
+        print(f"Epoch {epoch+1}/{num_epochs}, Train Loss: {train_loss:.4f}, Val Loss: {val_loss:.4f}")</code></pre>
+
+                    <h3>6. 模型评估</h3>
+                    <p>
+                        信用风险预测常用的评估指标：
+                    </p>
+                    <ul>
+                        <li><strong>AUC-ROC</strong>：评估整体分类性能</li>
+                        <li><strong>精确率和召回率</strong>：平衡误报和漏报</li>
+                        <li><strong>F1-Score</strong>：精确率和召回率的调和平均</li>
+                        <li><strong>KS统计量</strong>：评估模型区分能力</li>
+                    </ul>
+
+                    <h3>7. 实验结果</h3>
+                    <p>
+                        在我们的研究中，KAN网络和LSTM/GRU模型在信用风险预测任务上都取得了良好的效果：
+                    </p>
+                    <ul>
+                        <li>KAN网络在捕捉非线性关系方面表现优异</li>
+                        <li>LSTM/GRU在处理时间序列依赖方面效果显著</li>
+                        <li>ResE-BiLSTM结合了双向信息和残差连接，性能最佳</li>
+                    </ul>
+
+                    <h3>8. 实际应用建议</h3>
+                    <ul>
+                        <li>数据质量至关重要，需要仔细进行数据清洗和特征工程</li>
+                        <li>考虑模型的解释性，使用SHAP值等方法</li>
+                        <li>定期重新训练模型，适应数据分布的变化</li>
+                        <li>结合业务知识，不要完全依赖模型</li>
+                        <li>注意模型的可解释性和合规性要求</li>
+                    </ul>
+
+                    <h3>9. 总结</h3>
+                    <p>
+                        机器学习技术在信用风险分析中具有巨大潜力。通过合理选择模型架构、精心设计特征工程和训练策略，我们可以构建出高性能的信用风险预测系统。未来，随着更多先进模型的出现，这一领域还有很大的发展空间。
+                    </p>
+
+                    <blockquote>
+                        <strong>相关论文：</strong>
+                        <ul>
+                            <li>Kolmogorov–Arnold Networks-based GRU and LSTM for Loan Default Early Prediction (Applied Soft Computing, 2025, Under Review)</li>
+                            <li>Transforming Credit Risk Analysis: A Time-Series-Driven ResE-BiLSTM Framework for Post-Loan Default Detection (CSCR III, 2024, Accepted)</li>
+                        </ul>
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+
