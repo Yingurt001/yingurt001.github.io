@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications - Ying Zhang</title>
+    <title>单片机博客 - Ying Zhang</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
                     Home
                 </a>
-                <a href="publications.html" class="active">
+                <a href="publications.html">
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg>
                     Publications
                 </a>
@@ -47,7 +47,7 @@
                     <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                     Personal
                 </a>
-                <a href="blog.html">
+                <a href="blog.html" class="active">
                     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
                     Blog
                 </a>
@@ -79,47 +79,57 @@
         </aside>
 
         <main class="content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <h2>PUBLICATIONS</h2>
-                <div style="font-size: 0.9rem; color: #666;">
-                    See also on: 
-                    <a href="#" style="color: #3b82f6; text-decoration: none; margin-left: 0.5rem;">Google Scholar</a> | 
-                    <a href="#" style="color: #3b82f6; text-decoration: none;">DBLP</a> | 
-                    <a href="#" style="color: #3b82f6; text-decoration: none;">ResearchGate</a> | 
-                    <a href="#" style="color: #3b82f6; text-decoration: none;">ORCID</a>
-                </div>
-            </div>
+            <h2>单片机博客</h2>
+            <p style="margin-bottom: 2rem; color: #666;">
+                这里记录我在单片机学习和项目开发中的经验、教程和心得。
+            </p>
 
-            <div class="publication-item">
-                <div class="publication-title">
-                    <a href="https://arxiv.org/abs/2507.13685">Kolmogorov–Arnold Networks-based GRU and LSTM for Loan Default Early Prediction</a>
-                </div>
-                <div class="publication-authors">
-                    Yue Yang, Zihan Su, <strong>Ying Zhang</strong>, Chang Chuan, Yuxiang Lin, Anthony Graham Bellotti, Boon Giin Lee
-                </div>
-                <div class="publication-venue">
-                    Journal of Applied Soft Computing 2025, Under Review (arXiv:2507.13685)
-                </div>
-                <div class="publication-links">
-                    <button onclick="copyBibtex(1)">BibTex</button>
-                    <a href="https://arxiv.org/abs/2507.13685" target="_blank">arXiv</a>
-                </div>
-            </div>
+            <!-- Blog Post List -->
+            <div class="blog-list">
+                <article class="blog-item">
+                    <div class="blog-date">2025年1月15日</div>
+                    <h3 class="blog-title">
+                        <a href="blog-posts/stm32-getting-started.html">STM32入门指南：从零开始学习单片机开发</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        本文介绍STM32单片机的基础知识，包括开发环境搭建、第一个程序的编写，以及GPIO的基本使用方法。适合初学者快速入门。
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">STM32</span>
+                        <span class="tag">入门教程</span>
+                        <span class="tag">GPIO</span>
+                    </div>
+                </article>
 
-            <div class="publication-item">
-                <div class="publication-title">
-                    <a href="https://arxiv.org/abs/2508.00415">Transforming Credit Risk Analysis: A Time-Series-Driven ResE-BiLSTM Framework for Post-Loan Default Detection</a>
-                </div>
-                <div class="publication-authors">
-                    Yue Yang, Yuxiang Lin, <strong>Ying Zhang</strong>, Zihan Su, Anthony Graham Bellotti, Boon Giin Lee
-                </div>
-                <div class="publication-venue">
-                    The Third Credit Scoring and Credit Rating Conference (CSCR III), 2024, Accepted (arXiv:2508.00415)
-                </div>
-                <div class="publication-links">
-                    <button onclick="copyBibtex(2)">BibTex</button>
-                    <a href="https://arxiv.org/abs/2508.00415" target="_blank">arXiv</a>
-                </div>
+                <article class="blog-item">
+                    <div class="blog-date">2025年1月10日</div>
+                    <h3 class="blog-title">
+                        <a href="blog-posts/arduino-sensor-project.html">Arduino传感器项目实战：温湿度监测系统</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        使用Arduino和DHT22传感器构建一个温湿度监测系统，包括硬件连接、代码编写和数据显示。项目包含完整的代码示例和接线图。
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">传感器</span>
+                        <span class="tag">项目实战</span>
+                    </div>
+                </article>
+
+                <article class="blog-item">
+                    <div class="blog-date">2025年1月5日</div>
+                    <h3 class="blog-title">
+                        <a href="blog-posts/esp32-wifi-iot.html">ESP32 WiFi物联网应用开发</a>
+                    </h3>
+                    <p class="blog-excerpt">
+                        探索ESP32的WiFi功能，学习如何连接网络、发送HTTP请求，并构建一个简单的物联网应用。涵盖WiFi配置、MQTT通信等内容。
+                    </p>
+                    <div class="blog-tags">
+                        <span class="tag">ESP32</span>
+                        <span class="tag">WiFi</span>
+                        <span class="tag">物联网</span>
+                    </div>
+                </article>
             </div>
         </main>
     </div>
@@ -144,32 +154,6 @@
             const email = 'Yingurt@Outlook.com';
             navigator.clipboard.writeText(email).then(() => {
                 alert('Email address copied to clipboard');
-            });
-        }
-
-        function copyBibtex(id) {
-            const bibtexEntries = {
-                1: `@article{yang2025kolmogorov,
-  title={Kolmogorov--Arnold Networks-based GRU and LSTM for Loan Default Early Prediction},
-  author={Yang, Yue and Su, Zihan and Zhang, Ying and Chuan, Chang and Lin, Yuxiang and Bellotti, Anthony Graham and Lee, Boon Giin},
-  journal={Journal of Applied Soft Computing},
-  year={2025},
-  note={Under Review},
-  eprint={2507.13685},
-  archivePrefix={arXiv}
-}`,
-                2: `@inproceedings{yang2024transforming,
-  title={Transforming Credit Risk Analysis: A Time-Series-Driven ResE-BiLSTM Framework for Post-Loan Default Detection},
-  author={Yang, Yue and Lin, Yuxiang and Zhang, Ying and Su, Zihan and Bellotti, Anthony Graham and Lee, Boon Giin},
-  booktitle={The Third Credit Scoring and Credit Rating Conference (CSCR III)},
-  year={2024},
-  note={Accepted},
-  eprint={2508.00415},
-  archivePrefix={arXiv}
-}`
-            };
-            navigator.clipboard.writeText(bibtexEntries[id]).then(() => {
-                alert('BibTeX copied to clipboard');
             });
         }
     </script>

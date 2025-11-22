@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STM32入门指南 - Ying Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../publications.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg>
+                    Publications
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content blog-post">
+            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">STM32入门指南：从零开始学习单片机开发</h1>
+                    <div class="blog-post-meta">
+                        <span>📅 2025年1月15日</span>
+                        <span>🏷️ STM32, 入门教程, GPIO</span>
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <h3>1. 什么是STM32？</h3>
+                    <p>
+                        STM32是意法半导体（STMicroelectronics）推出的一系列32位ARM Cortex-M微控制器。它们具有高性能、低功耗、丰富的外设接口等特点，广泛应用于嵌入式系统开发中。
+                    </p>
+
+                    <h3>2. 开发环境搭建</h3>
+                    <h4>2.1 安装STM32CubeIDE</h4>
+                    <p>
+                        STM32CubeIDE是ST官方提供的集成开发环境，基于Eclipse，集成了STM32CubeMX配置工具。你可以从ST官网免费下载：
+                    </p>
+                    <ul>
+                        <li>访问 <a href="https://www.st.com/stm32cubeide" target="_blank">STM32CubeIDE官网</a></li>
+                        <li>下载适合你操作系统的版本</li>
+                        <li>按照安装向导完成安装</li>
+                    </ul>
+
+                    <h4>2.2 安装ST-Link驱动</h4>
+                    <p>
+                        如果你使用ST-Link调试器，需要安装相应的驱动程序。驱动通常包含在STM32CubeIDE安装包中，也可以单独下载。
+                    </p>
+
+                    <h3>3. 第一个STM32程序：点亮LED</h3>
+                    <p>
+                        让我们从一个简单的例子开始：使用GPIO控制LED灯。
+                    </p>
+
+                    <h4>3.1 硬件连接</h4>
+                    <p>
+                        将LED的正极通过限流电阻连接到STM32的GPIO引脚（例如PA5），负极连接到GND。
+                    </p>
+
+                    <h4>3.2 代码实现</h4>
+                    <p>使用HAL库的示例代码：</p>
+                    <pre><code>#include "stm32f1xx_hal.h"
+
+int main(void) {
+    HAL_Init();
+    
+    // 配置系统时钟
+    SystemClock_Config();
+    
+    // 使能GPIOA时钟
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    
+    // 配置PA5为推挽输出
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    
+    while (1) {
+        // 点亮LED
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+        HAL_Delay(500);
+        
+        // 熄灭LED
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+        HAL_Delay(500);
+    }
+}</code></pre>
+
+                    <h3>4. GPIO基础操作</h3>
+                    <h4>4.1 GPIO模式</h4>
+                    <ul>
+                        <li><strong>输入模式</strong>：用于读取外部信号</li>
+                        <li><strong>输出模式</strong>：用于控制外部设备</li>
+                        <li><strong>复用功能</strong>：用于外设功能（如UART、SPI等）</li>
+                        <li><strong>模拟模式</strong>：用于ADC输入</li>
+                    </ul>
+
+                    <h4>4.2 常用GPIO函数</h4>
+                    <ul>
+                        <li><code>HAL_GPIO_Init()</code> - 初始化GPIO</li>
+                        <li><code>HAL_GPIO_WritePin()</code> - 写GPIO引脚</li>
+                        <li><code>HAL_GPIO_ReadPin()</code> - 读GPIO引脚</li>
+                        <li><code>HAL_GPIO_TogglePin()</code> - 翻转GPIO引脚状态</li>
+                    </ul>
+
+                    <h3>5. 调试技巧</h3>
+                    <p>
+                        在开发过程中，调试是非常重要的。你可以使用：
+                    </p>
+                    <ul>
+                        <li>ST-Link调试器进行在线调试</li>
+                        <li>串口输出调试信息</li>
+                        <li>逻辑分析仪观察信号波形</li>
+                    </ul>
+
+                    <h3>6. 下一步学习方向</h3>
+                    <p>
+                        掌握了GPIO基础后，你可以继续学习：
+                    </p>
+                    <ul>
+                        <li>定时器（Timer）的使用</li>
+                        <li>串口通信（UART）</li>
+                        <li>中断处理</li>
+                        <li>ADC/DAC应用</li>
+                        <li>SPI/I2C通信协议</li>
+                    </ul>
+
+                    <h3>7. 总结</h3>
+                    <p>
+                        STM32开发需要掌握硬件知识和软件编程能力。通过不断实践和项目积累，你会逐渐熟悉STM32的各种功能。记住，多动手实践是最好的学习方法！
+                    </p>
+
+                    <blockquote>
+                        <strong>提示：</strong>如果你在学习过程中遇到问题，可以查阅STM32的官方参考手册和HAL库文档，或者在相关的技术论坛寻求帮助。
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Google Scholar"><img src="https://img.icons8.com/color/24/000000/google-scholar.png" alt="Google Scholar"></a>
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 WiFi物联网应用开发 - Ying Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content blog-post">
+            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">ESP32 WiFi物联网应用开发</h1>
+                    <div class="blog-post-meta">
+                        <span>📅 2025年1月5日</span>
+                        <span>🏷️ ESP32, WiFi, 物联网</span>
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <h3>ESP32简介</h3>
+                    <p>
+                        ESP32是乐鑫科技推出的一款功能强大的WiFi和蓝牙双模芯片。它不仅具有丰富的外设接口，还内置了WiFi和蓝牙功能，非常适合物联网（IoT）应用开发。
+                    </p>
+
+                    <h3>ESP32的主要特性</h3>
+                    <ul>
+                        <li>双核32位处理器（最高240MHz）</li>
+                        <li>内置WiFi 802.11 b/g/n</li>
+                        <li>内置蓝牙4.2和BLE</li>
+                        <li>丰富的外设：GPIO、ADC、DAC、SPI、I2C、UART等</li>
+                        <li>低功耗设计</li>
+                        <li>价格低廉，易于获取</li>
+                    </ul>
+
+                    <h3>开发环境搭建</h3>
+                    <h4>1. 安装Arduino IDE</h4>
+                    <p>
+                        虽然ESP32可以使用多种开发环境，但Arduino IDE是最简单易用的选择。
+                    </p>
+
+                    <h4>2. 添加ESP32开发板支持</h4>
+                    <ol>
+                        <li>打开Arduino IDE，进入"文件" → "首选项"</li>
+                        <li>在"附加开发板管理器网址"中添加：
+                            <code>https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json</code>
+                        </li>
+                        <li>打开"工具" → "开发板" → "开发板管理器"</li>
+                        <li>搜索"esp32"并安装"esp32 by Espressif Systems"</li>
+                    </ol>
+
+                    <h3>WiFi连接示例</h3>
+                    <p>
+                        以下是一个基本的WiFi连接示例：
+                    </p>
+                    <pre><code>#include &lt;WiFi.h&gt;
+
+const char* ssid = "你的WiFi名称";
+const char* password = "你的WiFi密码";
+
+void setup() {
+    Serial.begin(115200);
+    
+    // 连接WiFi
+    WiFi.begin(ssid, password);
+    
+    Serial.print("正在连接WiFi");
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    
+    Serial.println();
+    Serial.print("WiFi已连接！IP地址: ");
+    Serial.println(WiFi.localIP());
+}
+
+void loop() {
+    // 检查WiFi连接状态
+    if (WiFi.status() == WL_CONNECTED) {
+        Serial.println("WiFi连接正常");
+    } else {
+        Serial.println("WiFi连接断开，尝试重连...");
+        WiFi.begin(ssid, password);
+    }
+    delay(5000);
+}</code></pre>
+
+                    <h3>HTTP客户端示例</h3>
+                    <p>
+                        连接WiFi后，我们可以发送HTTP请求获取数据：
+                    </p>
+                    <pre><code>#include &lt;WiFi.h&gt;
+#include &lt;HTTPClient.h&gt;
+
+const char* ssid = "你的WiFi名称";
+const char* password = "你的WiFi密码";
+
+void setup() {
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    
+    Serial.println("\nWiFi已连接");
+}
+
+void loop() {
+    if (WiFi.status() == WL_CONNECTED) {
+        HTTPClient http;
+        
+        // 发送GET请求
+        http.begin("http://httpbin.org/get");
+        int httpCode = http.GET();
+        
+        if (httpCode > 0) {
+            String payload = http.getString();
+            Serial.println(httpCode);
+            Serial.println(payload);
+        } else {
+            Serial.println("请求失败");
+        }
+        
+        http.end();
+    }
+    
+    delay(10000);
+}</code></pre>
+
+                    <h3>MQTT通信</h3>
+                    <p>
+                        MQTT是物联网中常用的轻量级消息传输协议。ESP32可以轻松实现MQTT通信：
+                    </p>
+                    <pre><code>#include &lt;WiFi.h&gt;
+#include &lt;PubSubClient.h&gt;
+
+const char* ssid = "你的WiFi名称";
+const char* password = "你的WiFi密码";
+const char* mqtt_server = "broker.hivemq.com";  // 公共MQTT服务器
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+void setup() {
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    
+    client.setServer(mqtt_server, 1883);
+    client.setCallback(callback);
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+    Serial.print("收到消息 [");
+    Serial.print(topic);
+    Serial.print("]: ");
+    for (int i = 0; i < length; i++) {
+        Serial.print((char)payload[i]);
+    }
+    Serial.println();
+}
+
+void reconnect() {
+    while (!client.connected()) {
+        Serial.print("尝试连接MQTT服务器...");
+        if (client.connect("ESP32Client")) {
+            Serial.println("已连接");
+            client.subscribe("esp32/topic");
+        } else {
+            Serial.print("失败，重试中...");
+            delay(5000);
+        }
+    }
+}
+
+void loop() {
+    if (!client.connected()) {
+        reconnect();
+    }
+    client.loop();
+    
+    // 发布消息
+    client.publish("esp32/topic", "Hello from ESP32!");
+    delay(5000);
+}</code></pre>
+
+                    <h3>Web服务器示例</h3>
+                    <p>
+                        ESP32还可以作为Web服务器，提供Web界面：
+                    </p>
+                    <pre><code>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+const char* ssid = "你的WiFi名称";
+const char* password = "你的WiFi密码";
+
+WebServer server(80);
+
+void handleRoot() {
+    String html = "&lt;html&gt;&lt;body&gt;";
+    html += "&lt;h1&gt;ESP32 Web服务器&lt;/h1&gt;";
+    html += "&lt;p&gt;这是一个ESP32 Web服务器示例&lt;/p&gt;";
+    html += "&lt;/body&gt;&lt;/html&gt;";
+    server.send(200, "text/html", html);
+}
+
+void setup() {
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    
+    Serial.println("\nWiFi已连接");
+    Serial.print("IP地址: ");
+    Serial.println(WiFi.localIP());
+    
+    server.on("/", handleRoot);
+    server.begin();
+    Serial.println("Web服务器已启动");
+}
+
+void loop() {
+    server.handleClient();
+}</code></pre>
+
+                    <h3>实际应用场景</h3>
+                    <ul>
+                        <li><strong>智能家居</strong>：控制灯光、温度、安防系统</li>
+                        <li><strong>环境监测</strong>：实时监测温度、湿度、空气质量</li>
+                        <li><strong>远程控制</strong>：通过手机APP控制设备</li>
+                        <li><strong>数据采集</strong>：收集传感器数据并上传到云端</li>
+                    </ul>
+
+                    <h3>总结</h3>
+                    <p>
+                        ESP32凭借其强大的功能和低廉的价格，是物联网开发的理想选择。通过WiFi连接，我们可以轻松实现设备与互联网的通信，构建各种智能应用。
+                    </p>
+
+                    <blockquote>
+                        <strong>提示：</strong>在实际项目中，要注意WiFi连接的稳定性处理，添加重连机制和错误处理，确保设备能够可靠运行。
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+

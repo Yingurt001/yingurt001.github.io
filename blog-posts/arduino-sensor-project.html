@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino传感器项目实战 - Ying Zhang</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="content blog-post">
+            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">Arduino传感器项目实战：温湿度监测系统</h1>
+                    <div class="blog-post-meta">
+                        <span>📅 2025年1月10日</span>
+                        <span>🏷️ Arduino, 传感器, 项目实战</span>
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <h3>项目介绍</h3>
+                    <p>
+                        本项目使用Arduino Uno和DHT22温湿度传感器构建一个实时温湿度监测系统。系统可以读取环境温度和湿度，并通过串口输出数据，也可以连接LCD显示屏进行本地显示。
+                    </p>
+
+                    <h3>所需材料</h3>
+                    <ul>
+                        <li>Arduino Uno开发板 × 1</li>
+                        <li>DHT22温湿度传感器 × 1</li>
+                        <li>10kΩ上拉电阻 × 1</li>
+                        <li>面包板和杜邦线若干</li>
+                        <li>（可选）16×2 LCD显示屏</li>
+                    </ul>
+
+                    <h3>硬件连接</h3>
+                    <h4>DHT22连接方式</h4>
+                    <ul>
+                        <li><strong>VCC</strong> → Arduino 5V</li>
+                        <li><strong>GND</strong> → Arduino GND</li>
+                        <li><strong>DATA</strong> → Arduino Digital Pin 2（通过10kΩ上拉电阻连接到VCC）</li>
+                    </ul>
+
+                    <h3>软件实现</h3>
+                    <h4>1. 安装DHT库</h4>
+                    <p>
+                        在Arduino IDE中，打开"工具" → "管理库"，搜索"DHT sensor library"并安装。
+                    </p>
+
+                    <h4>2. 完整代码</h4>
+                    <pre><code>#include &lt;DHT.h&gt;
+
+#define DHTPIN 2        // DHT22数据引脚
+#define DHTTYPE DHT22   // 传感器类型
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+    Serial.begin(9600);
+    Serial.println("DHT22温湿度监测系统");
+    dht.begin();
+}
+
+void loop() {
+    // 读取需要约250ms，延迟2秒以确保数据稳定
+    delay(2000);
+    
+    // 读取湿度
+    float humidity = dht.readHumidity();
+    // 读取温度（摄氏度）
+    float temperature = dht.readTemperature();
+    
+    // 检查读取是否成功
+    if (isnan(humidity) || isnan(temperature)) {
+        Serial.println("读取传感器数据失败！");
+        return;
+    }
+    
+    // 计算热指数（体感温度）
+    float heatIndex = dht.computeHeatIndex(temperature, humidity, false);
+    
+    // 输出数据
+    Serial.print("湿度: ");
+    Serial.print(humidity);
+    Serial.print(" %\t");
+    Serial.print("温度: ");
+    Serial.print(temperature);
+    Serial.print(" °C\t");
+    Serial.print("体感温度: ");
+    Serial.print(heatIndex);
+    Serial.println(" °C");
+}</code></pre>
+
+                    <h3>功能扩展</h3>
+                    <h4>添加LCD显示</h4>
+                    <p>
+                        如果你有LCD显示屏，可以添加以下代码来显示数据：
+                    </p>
+                    <pre><code>#include &lt;LiquidCrystal.h&gt;
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 6);
+
+void setup() {
+    lcd.begin(16, 2);
+    // ... 其他初始化代码
+}
+
+void loop() {
+    // ... 读取传感器数据
+    
+    // 显示在LCD上
+    lcd.setCursor(0, 0);
+    lcd.print("Temp: ");
+    lcd.print(temperature);
+    lcd.print("C");
+    
+    lcd.setCursor(0, 1);
+    lcd.print("Humidity: ");
+    lcd.print(humidity);
+    lcd.print("%");
+}</code></pre>
+
+                    <h4>添加数据记录功能</h4>
+                    <p>
+                        可以使用SD卡模块记录数据，或者通过WiFi模块（如ESP8266）将数据上传到云端。
+                    </p>
+
+                    <h3>常见问题</h3>
+                    <ul>
+                        <li><strong>读取失败</strong>：检查接线是否正确，确保上拉电阻已连接</li>
+                        <li><strong>数据不准确</strong>：DHT22需要2秒的读取间隔，不要过于频繁读取</li>
+                        <li><strong>串口无输出</strong>：检查波特率设置是否正确（9600）</li>
+                    </ul>
+
+                    <h3>项目总结</h3>
+                    <p>
+                        这个项目展示了如何使用Arduino读取传感器数据。你可以在此基础上扩展更多功能，比如：
+                    </p>
+                    <ul>
+                        <li>添加多个传感器</li>
+                        <li>实现数据可视化</li>
+                        <li>添加报警功能（温度/湿度超出范围时报警）</li>
+                        <li>连接物联网平台实现远程监控</li>
+                    </ul>
+
+                    <blockquote>
+                        <strong>提示：</strong>DHT22的精度为±0.5°C（温度）和±1%RH（湿度），适合大多数应用场景。如果需要更高精度，可以考虑使用SHT30等传感器。
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+
