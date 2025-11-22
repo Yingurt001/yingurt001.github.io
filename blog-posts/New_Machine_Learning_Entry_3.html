@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!-- 
+    ============================================
+    进度更新 #3 详细页面模板
+    ============================================
+    这个文件是进度更新 #3 的详细内容页面
+    包含详细的中文注释说明每个部分的功能
+    ============================================
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进度更新 #3: 模型训练和优化 - Ying Zhang</title>
+    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container blog-full-width">
+        <main class="content blog-post">
+            <!-- 返回链接 -->
+            <a href="New_Machine_Learning.html" class="back-to-blog">← Back to Machine Learning Progress</a>
+            
+            <article>
+                <!-- 文章头部 -->
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">进度更新 #3: 模型训练和优化</h1>
+                    
+                    <div class="blog-post-meta">
+                        <span>📅 January 10, 2025</span>
+                        <span>🏷️ Training, Optimization, Week 3</span>
+                    </div>
+                </div>
+
+                <!-- 文章正文内容 -->
+                <div class="blog-post-content">
+                    <!-- 进度总结 -->
+                    <h3>本周进度总结</h3>
+                    <p>
+                        完成了模型的初始训练，开始进行超参数调优和模型优化。
+                        尝试了不同的优化器和学习率策略。
+                    </p>
+
+                    <!-- 模型训练 -->
+                    <h3>模型训练</h3>
+                    <h4>1. 初始训练结果</h4>
+                    <p>
+                        完成了模型的初始训练，获得了以下结果：
+                    </p>
+                    <ul>
+                        <li>训练轮数（Epochs）：50</li>
+                        <li>初始学习率：0.001</li>
+                        <li>批次大小（Batch Size）：128</li>
+                        <li>训练准确率：约 75%</li>
+                        <li>验证准确率：约 72%</li>
+                    </ul>
+
+                    <h4>2. 训练过程观察</h4>
+                    <p>
+                        在训练过程中观察到以下现象：
+                    </p>
+                    <ul>
+                        <li>训练损失持续下降</li>
+                        <li>验证损失在前期下降，后期趋于平稳</li>
+                        <li>存在轻微的过拟合现象</li>
+                        <li>模型收敛速度较快</li>
+                    </ul>
+
+                    <!-- 超参数调优 -->
+                    <h3>超参数调优</h3>
+                    <h4>1. 学习率调整</h4>
+                    <p>
+                        尝试了不同的学习率策略：
+                    </p>
+                    <ul>
+                        <li><strong>固定学习率：</strong>0.001, 0.0005, 0.0001</li>
+                        <li><strong>学习率衰减：</strong>每10个epoch降低10%</li>
+                        <li><strong>余弦退火：</strong>使用余弦函数调整学习率</li>
+                    </ul>
+                    <p>
+                        <strong>最佳结果：</strong>使用学习率衰减策略，初始学习率0.001，每10个epoch降低10%
+                    </p>
+
+                    <h4>2. 优化器选择</h4>
+                    <p>
+                        比较了不同的优化器：
+                    </p>
+                    <ul>
+                        <li><strong>SGD：</strong>基础优化器，收敛较慢但稳定</li>
+                        <li><strong>Adam：</strong>自适应学习率，收敛快但可能不稳定</li>
+                        <li><strong>AdamW：</strong>Adam的改进版本，权重衰减更合理</li>
+                    </ul>
+                    <p>
+                        <strong>最终选择：</strong>AdamW优化器，结合学习率衰减策略
+                    </p>
+
+                    <!-- 代码示例 -->
+                    <h3>训练代码示例</h3>
+                    <pre><code>import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.optim.lr_scheduler import StepLR
+
+# 定义模型、损失函数和优化器
+model = CNNModel()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=0.0001)
+
+# 学习率调度器
+scheduler = StepLR(optimizer, step_size=10, gamma=0.9)
+
+# 训练循环
+for epoch in range(num_epochs):
+    model.train()
+    for batch_idx, (data, target) in enumerate(train_loader):
+        optimizer.zero_grad()
+        output = model(data)
+        loss = criterion(output, target)
+        loss.backward()
+        optimizer.step()
+    
+    # 更新学习率
+    scheduler.step()
+    
+    # 验证
+    model.eval()
+    with torch.no_grad():
+        # 验证代码...
+        pass
+</code></pre>
+
+                    <!-- 模型优化 -->
+                    <h3>模型优化</h3>
+                    <h4>1. 正则化技术</h4>
+                    <p>
+                        应用了以下正则化技术来减少过拟合：
+                    </p>
+                    <ul>
+                        <li><strong>Dropout：</strong>在训练时随机丢弃部分神经元</li>
+                        <li><strong>权重衰减（Weight Decay）：</strong>L2正则化</li>
+                        <li><strong>数据增强：</strong>增加训练数据的多样性</li>
+                    </ul>
+
+                    <h4>2. 模型架构调整</h4>
+                    <p>
+                        尝试了不同的模型架构：
+                    </p>
+                    <ul>
+                        <li>增加/减少卷积层数量</li>
+                        <li>调整卷积核大小</li>
+                        <li>修改全连接层的维度</li>
+                    </ul>
+
+                    <!-- 性能提升 -->
+                    <h3>性能提升</h3>
+                    <p>
+                        通过超参数调优和模型优化，获得了以下改进：
+                    </p>
+                    <ul>
+                        <li>验证准确率从 72% 提升到 78%</li>
+                        <li>过拟合现象得到缓解</li>
+                        <li>训练过程更加稳定</li>
+                        <li>收敛速度有所提升</li>
+                    </ul>
+
+                    <!-- 遇到的问题 -->
+                    <h3>遇到的问题和解决方案</h3>
+                    <ul>
+                        <li><strong>问题1：</strong>训练过程中出现梯度爆炸</li>
+                        <li><strong>解决方案：</strong>使用梯度裁剪（Gradient Clipping）限制梯度大小</li>
+                        
+                        <li><strong>问题2：</strong>模型在验证集上表现不佳</li>
+                        <li><strong>解决方案：</strong>增加Dropout比例，加强数据增强</li>
+                        
+                        <li><strong>问题3：</strong>训练时间过长</li>
+                        <li><strong>解决方案：</strong>使用更小的批次大小，优化数据加载</li>
+                    </ul>
+
+                    <!-- 下一步计划 -->
+                    <h3>下一步计划</h3>
+                    <ul>
+                        <li>继续优化模型架构</li>
+                        <li>尝试更先进的技术（如注意力机制）</li>
+                        <li>进行模型集成（Ensemble）</li>
+                        <li>准备模型部署</li>
+                    </ul>
+
+                    <!-- 总结 -->
+                    <h3>总结</h3>
+                    <p>
+                        本周在模型训练和优化方面取得了显著进展。
+                        通过系统性的超参数调优和模型优化，验证准确率提升了约6个百分点。
+                        学会了如何诊断和解决训练过程中的各种问题。
+                        下一步将继续优化模型，争取达到更高的性能。
+                    </p>
+
+                    <blockquote>
+                        <strong>学习心得：</strong>超参数调优是一个需要耐心和系统性的过程。
+                        记录每次实验的结果，分析不同参数组合的效果，是提高模型性能的关键。
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/Yingurt001" target="_blank" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+

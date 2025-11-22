@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!-- 
+    ============================================
+    进度索引页面模板 - Progress Index Page Template
+    ============================================
+    这个文件是一个进度索引页面，可以展示多个进度条目，每个条目都可以点击进入详细页面。
+    
+    This is a progress index page template that displays multiple progress entries,
+    each entry can be clicked to view detailed content.
+    ============================================
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Progress - Ying Zhang</title>
+    <!-- 修改为你想要的页面标题 -->
+    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container blog-full-width">
+        <main class="content blog-post">
+            <!-- 返回博客列表 -->
+            <a href="../blog.html" class="back-to-blog">← Back to Blog</a>
+            
+            <!-- 
+                ============================================
+                页面标题和介绍
+                ============================================
+            -->
+            <article>
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">Machine Learning Progress</h1>
+                    <!-- 修改为你想要的标题 -->
+                    
+                    <div class="blog-post-meta">
+                        <span>📅 Updated: January 20, 2025</span>
+                        <!-- 修改为最后更新时间 -->
+                        <span>🏷️ Machine Learning, Progress, Updates</span>
+                        <!-- 修改标签 -->
+                    </div>
+                </div>
+
+                <div class="blog-post-content">
+                    <!-- 
+                        ============================================
+                        页面介绍段落
+                        ============================================
+                    -->
+                    <p style="font-size: 1.1rem; color: #666; margin-bottom: 3rem; line-height: 1.8;">
+                        这里记录我在机器学习学习和项目中的进度更新。每个条目都可以点击查看详细内容。
+                        <!-- 修改为你想要的介绍文字 -->
+                    </p>
+
+                    <!-- 
+                        ============================================
+                        进度条目列表 - Progress Entries List
+                        ============================================
+                        使用 blog-list 样式来展示进度条目
+                    -->
+                    <div class="blog-list">
+                        
+                        <!-- 
+                            ============================================
+                            进度条目模板 1 - Progress Entry Template 1
+                            ============================================
+                            复制这个模板来添加新的进度条目
+                        -->
+                        <article class="blog-item">
+                            <!-- 日期 -->
+                            <div class="blog-date">January 20, 2025</div>
+                            <!-- 修改为这个进度更新的日期 -->
+                            
+                            <!-- 标题和链接 -->
+                            <h3 class="blog-title">
+                                <a href="New_Machine_Learning_Entry_1.html">进度更新 #1: 完成神经网络基础学习</a>
+                                <!-- 
+                                    修改：
+                                    1. href="文件名.html" - 链接到详细页面（如果还没有创建，可以先写文件名）
+                                    2. 标题文字 - 修改为你的进度标题
+                                -->
+                            </h3>
+                            
+                            <!-- 摘要/描述 -->
+                            <p class="blog-excerpt">
+                                本周完成了神经网络基础理论的学习，包括感知机、多层感知机和反向传播算法的理解。
+                                开始实践使用PyTorch实现简单的神经网络模型。
+                                <!-- 修改为这个进度更新的简要描述 -->
+                            </p>
+                            
+                            <!-- 标签 -->
+                            <div class="blog-tags">
+                                <span class="tag">Neural Networks</span>
+                                <span class="tag">PyTorch</span>
+                                <span class="tag">Week 1</span>
+                                <!-- 修改标签为你想要的关键词 -->
+                            </div>
+                        </article>
+
+                        <!-- 
+                            ============================================
+                            进度条目模板 2 - Progress Entry Template 2
+                            ============================================
+                        -->
+                        <article class="blog-item">
+                            <div class="blog-date">January 15, 2025</div>
+                            <!-- 修改日期 -->
+                            
+                            <h3 class="blog-title">
+                                <a href="New_Machine_Learning_Entry_2.html">进度更新 #2: 开始深度学习项目</a>
+                                <!-- 修改标题和链接 -->
+                            </h3>
+                            
+                            <p class="blog-excerpt">
+                                开始一个新的深度学习项目，准备使用卷积神经网络进行图像分类任务。
+                                完成了数据集的收集和预处理工作。
+                                <!-- 修改描述 -->
+                            </p>
+                            
+                            <div class="blog-tags">
+                                <span class="tag">Deep Learning</span>
+                                <span class="tag">CNN</span>
+                                <span class="tag">Week 2</span>
+                                <!-- 修改标签 -->
+                            </div>
+                        </article>
+
+                        <!-- 
+                            ============================================
+                            进度条目模板 3 - Progress Entry Template 3
+                            ============================================
+                        -->
+                        <article class="blog-item">
+                            <div class="blog-date">January 10, 2025</div>
+                            
+                            <h3 class="blog-title">
+                                <a href="New_Machine_Learning_Entry_3.html">进度更新 #3: 模型训练和优化</a>
+                            </h3>
+                            
+                            <p class="blog-excerpt">
+                                完成了模型的初始训练，开始进行超参数调优和模型优化。
+                                尝试了不同的优化器和学习率策略。
+                            </p>
+                            
+                            <div class="blog-tags">
+                                <span class="tag">Training</span>
+                                <span class="tag">Optimization</span>
+                                <span class="tag">Week 3</span>
+                            </div>
+                        </article>
+
+                        <!-- 
+                            ============================================
+                            如何添加新的进度条目：
+                            ============================================
+                            
+                            1. 复制上面的 <article class="blog-item"> 到 </article> 整个块
+                            2. 粘贴到现有条目下方
+                            3. 修改以下内容：
+                               - blog-date: 日期
+                               - blog-title 中的链接和文字
+                               - blog-excerpt: 描述
+                               - blog-tags: 标签
+                            
+                            注意：日期应该按从新到旧的顺序排列（最新的在上面）
+                        -->
+
+                    </div>
+
+                    <!-- 
+                        ============================================
+                        额外说明区域（可选）
+                        ============================================
+                    -->
+                    <div style="margin-top: 4rem; padding: 2rem; background-color: #f3f4f6; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                        <h3 style="margin-top: 0; margin-bottom: 1rem; color: #1e3a8a;">关于这个进度页面</h3>
+                        <p style="margin-bottom: 0; line-height: 1.8;">
+                            这个页面记录了我的机器学习学习进度。每个条目都可以点击查看详细内容。
+                            我会定期更新这个页面，记录学习过程中的重要里程碑和收获。
+                            <!-- 修改为你想要的说明文字 -->
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/Yingurt001" target="_blank" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+
+<!-- 
+    ============================================
+    使用说明 - Usage Instructions
+    ============================================
+    
+    创建详细进度页面的步骤：
+    
+    1. 创建新的HTML文件（例如：New_Machine_Learning_Entry_1.html）
+    2. 使用之前的博客文章模板来写详细内容
+    3. 在这个索引页面中添加对应的条目
+    4. 修改条目的 href 指向新创建的详细页面
+    
+    进度条目的结构：
+    - blog-date: 日期（按从新到旧排序）
+    - blog-title: 标题和链接
+    - blog-excerpt: 简要描述
+    - blog-tags: 标签（用于分类和搜索）
+    
+    注意事项：
+    - 保持日期从新到旧的顺序
+    - 每个条目都应该有唯一的链接
+    - 标签要简洁明了，便于分类
+    
+    ============================================
+-->

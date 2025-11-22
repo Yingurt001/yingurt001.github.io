@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- 
+    ============================================
+    进度更新 #1 详细页面模板
+    ============================================
+    这个文件是进度更新 #1 的详细内容页面
+    包含详细的中文注释说明每个部分的功能
+    ============================================
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进度更新 #1: 完成神经网络基础学习 - Ying Zhang</title>
+    <!-- 修改页面标题 -->
+    
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="../blog.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path><path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path></svg>
+                    Blog
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container blog-full-width">
+        <main class="content blog-post">
+            <!-- 返回链接 -->
+            <a href="New_Machine_Learning.html" class="back-to-blog">← Back to Machine Learning Progress</a>
+            <!-- 修改为返回进度索引页面的链接 -->
+            
+            <article>
+                <!-- 文章头部 -->
+                <div class="blog-post-header">
+                    <h1 class="blog-post-title">进度更新 #1: 完成神经网络基础学习</h1>
+                    <!-- 修改为你的文章标题 -->
+                    
+                    <div class="blog-post-meta">
+                        <span>📅 January 20, 2025</span>
+                        <!-- 修改日期 -->
+                        <span>🏷️ Neural Networks, PyTorch, Week 1</span>
+                        <!-- 修改标签 -->
+                    </div>
+                </div>
+
+                <!-- 文章正文内容 -->
+                <div class="blog-post-content">
+                    <!-- 
+                        ============================================
+                        进度总结
+                        ============================================
+                    -->
+                    <h3>本周进度总结</h3>
+                    <p>
+                        本周完成了神经网络基础理论的学习，包括感知机、多层感知机和反向传播算法的理解。
+                        开始实践使用PyTorch实现简单的神经网络模型。
+                        <!-- 修改为你的进度总结 -->
+                    </p>
+
+                    <!-- 
+                        ============================================
+                        学习内容
+                        ============================================
+                    -->
+                    <h3>学习内容</h3>
+                    
+                    <h4>1. 感知机（Perceptron）</h4>
+                    <p>
+                        学习了感知机的基本原理和结构：
+                    </p>
+                    <ul>
+                        <li>感知机是最简单的神经网络模型</li>
+                        <li>只能解决线性可分的问题</li>
+                        <li>理解了权重、偏置和激活函数的作用</li>
+                        <!-- 添加更多学习要点 -->
+                    </ul>
+
+                    <h4>2. 多层感知机（MLP）</h4>
+                    <p>
+                        深入学习了多层感知机的结构和工作原理：
+                    </p>
+                    <ul>
+                        <li>理解了隐藏层的作用</li>
+                        <li>学习了前向传播的过程</li>
+                        <li>掌握了反向传播算法的基本原理</li>
+                        <!-- 添加更多学习要点 -->
+                    </ul>
+
+                    <h4>3. PyTorch 实践</h4>
+                    <p>
+                        开始使用PyTorch框架进行实践：
+                    </p>
+                    <ul>
+                        <li>学习了PyTorch的基本语法</li>
+                        <li>实现了简单的神经网络模型</li>
+                        <li>理解了张量（Tensor）的概念</li>
+                        <!-- 添加更多实践内容 -->
+                    </ul>
+
+                    <!-- 
+                        ============================================
+                        代码示例（可选）
+                        ============================================
+                    -->
+                    <h3>代码示例</h3>
+                    <p>以下是一个简单的PyTorch神经网络实现：</p>
+                    <pre><code>import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# 定义简单的神经网络
+class SimpleNN(nn.Module):
+    def __init__(self, input_size, hidden_size, output_size):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(input_size, hidden_size)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(hidden_size, output_size)
+    
+    def forward(self, x):
+        out = self.fc1(x)
+        out = self.relu(out)
+        out = self.fc2(out)
+        return out
+
+# 创建模型实例
+model = SimpleNN(input_size=784, hidden_size=128, output_size=10)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+</code></pre>
+                    <!-- 修改或添加你的代码示例 -->
+
+                    <!-- 
+                        ============================================
+                        遇到的问题和解决方案
+                        ============================================
+                    -->
+                    <h3>遇到的问题和解决方案</h3>
+                    <p>
+                        在学习过程中遇到了一些问题，以下是主要的挑战和解决方案：
+                    </p>
+                    <ul>
+                        <li><strong>问题1：</strong>对反向传播算法的理解不够深入</li>
+                        <li><strong>解决方案：</strong>通过手算简单的例子，逐步理解梯度是如何反向传播的</li>
+                        <!-- 添加更多问题和解决方案 -->
+                    </ul>
+
+                    <!-- 
+                        ============================================
+                        下一步计划
+                        ============================================
+                    -->
+                    <h3>下一步计划</h3>
+                    <p>
+                        下周的计划包括：
+                    </p>
+                    <ul>
+                        <li>深入学习卷积神经网络（CNN）</li>
+                        <li>完成一个图像分类的实践项目</li>
+                        <li>学习数据预处理和增强技术</li>
+                        <!-- 修改为你的下一步计划 -->
+                    </ul>
+
+                    <!-- 
+                        ============================================
+                        总结
+                        ============================================
+                    -->
+                    <h3>总结</h3>
+                    <p>
+                        本周的学习为后续的深度学习项目打下了坚实的基础。
+                        通过理论学习与实践相结合，对神经网络有了更深入的理解。
+                        期待下周能够开始更复杂的项目。
+                        <!-- 修改为你的总结 -->
+                    </p>
+
+                    <!-- 
+                        ============================================
+                        引用或提示（可选）
+                        ============================================
+                    -->
+                    <blockquote>
+                        <strong>学习心得：</strong>理论与实践相结合是学习机器学习的最佳方式。
+                        通过动手实现，能够更好地理解算法的本质。
+                        <!-- 修改为你的学习心得 -->
+                    </blockquote>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/Yingurt001" target="_blank" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+</body>
+</html>
+

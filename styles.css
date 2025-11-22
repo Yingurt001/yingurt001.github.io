@@ -433,6 +433,11 @@ body {
         gap: 2rem;
     }
     
+    .container.blog-full-width {
+        max-width: 100%;
+        padding: 1rem;
+    }
+    
     .sidebar {
         position: static;
         text-align: center;
@@ -477,13 +482,20 @@ body {
 
 /* Blog Styles */
 .blog-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2.5rem;
+}
+
+/* 如果只有一个条目或者在小屏幕上，使用单列布局 */
+@media (max-width: 1000px) {
+    .blog-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 .blog-item {
-    padding: 1.5rem;
+    padding: 2rem 2.5rem;
     background-color: #f9fafb;
     border-radius: 8px;
     border-left: 4px solid #3b82f6;
@@ -499,13 +511,13 @@ body {
 .blog-date {
     font-size: 0.85rem;
     color: #666;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .blog-title {
     font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 .blog-title a {
@@ -520,8 +532,9 @@ body {
 
 .blog-excerpt {
     color: #555;
-    line-height: 1.7;
-    margin-bottom: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
 }
 
 .blog-tags {
@@ -540,14 +553,22 @@ body {
 }
 
 /* Blog Post Page Styles */
+/* 博客文章页面使用全宽布局 */
+.container.blog-full-width {
+    grid-template-columns: 1fr;
+    max-width: 1400px;
+}
+
 .blog-post {
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .blog-post-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
     border-bottom: 2px solid #e5e7eb;
 }
 
@@ -568,8 +589,12 @@ body {
 }
 
 .blog-post-content {
-    line-height: 1.8;
+    line-height: 1.9;
     color: #444;
+}
+
+.blog-post-content p {
+    margin-bottom: 1.25rem;
 }
 
 .blog-post-content h3 {
