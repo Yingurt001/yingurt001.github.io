@@ -82,6 +82,8 @@ body {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center 60%;
+    margin-top: 0.5rem;
     margin-bottom: 1.5rem;
     border: 3px solid #1e3a8a;
 }
