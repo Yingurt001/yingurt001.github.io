@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>神经网络基础：从感知机到多层感知机 - Ying Zhang</title>
+    <title>Neural Networks Basics: From Perceptron to Multi-Layer Perceptron - Ying Zhang</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -25,49 +25,49 @@
 
     <div class="container">
         <main class="content blog-post">
-            <a href="../blog.html" class="back-to-blog">← 返回博客列表</a>
+            <a href="../blog.html" class="back-to-blog">← Back to Blog</a>
             
             <article>
                 <div class="blog-post-header">
-                    <h1 class="blog-post-title">神经网络基础：从感知机到多层感知机</h1>
+                    <h1 class="blog-post-title">Neural Networks Basics: From Perceptron to Multi-Layer Perceptron</h1>
                     <div class="blog-post-meta">
-                        <span>📅 2025年1月20日</span>
-                        <span>🏷️ 神经网络, 深度学习, Python</span>
+                        <span>📅 January 20, 2025</span>
+                        <span>🏷️ Neural Networks, Deep Learning, Python</span>
                     </div>
                 </div>
 
                 <div class="blog-post-content">
-                    <h3>1. 什么是神经网络？</h3>
+                    <h3>1. What are Neural Networks?</h3>
                     <p>
-                        神经网络是受生物神经元启发的计算模型，由大量相互连接的节点（神经元）组成。每个神经元接收输入，进行加权求和，然后通过激活函数产生输出。神经网络通过调整权重和偏置来学习数据中的模式。
+                        Neural networks are computational models inspired by biological neurons, consisting of a large number of interconnected nodes (neurons). Each neuron receives inputs, performs weighted summation, and produces output through an activation function. Neural networks learn patterns in data by adjusting weights and biases.
                     </p>
 
-                    <h3>2. 感知机（Perceptron）</h3>
+                    <h3>2. Perceptron</h3>
                     <p>
-                        感知机是最简单的神经网络模型，由Frank Rosenblatt在1957年提出。它只能解决线性可分的问题。
+                        The perceptron is the simplest neural network model, proposed by Frank Rosenblatt in 1957. It can only solve linearly separable problems.
                     </p>
 
-                    <h4>2.1 感知机的结构</h4>
+                    <h4>2.1 Structure of Perceptron</h4>
                     <p>
-                        一个感知机包含：
+                        A perceptron consists of:
                     </p>
                     <ul>
-                        <li><strong>输入层</strong>：接收特征向量</li>
-                        <li><strong>权重</strong>：每个输入都有一个权重</li>
-                        <li><strong>偏置</strong>：一个常数项</li>
-                        <li><strong>激活函数</strong>：通常是阶跃函数或符号函数</li>
+                        <li><strong>Input Layer</strong>: Receives feature vectors</li>
+                        <li><strong>Weights</strong>: Each input has a weight</li>
+                        <li><strong>Bias</strong>: A constant term</li>
+                        <li><strong>Activation Function</strong>: Usually a step function or sign function</li>
                     </ul>
 
-                    <h4>2.2 感知机的数学表示</h4>
+                    <h4>2.2 Mathematical Representation</h4>
                     <p>
-                        对于输入向量 <code>x = [x₁, x₂, ..., xₙ]</code>，感知机的输出为：
+                        For input vector <code>x = [x₁, x₂, ..., xₙ]</code>, the perceptron output is:
                     </p>
                     <pre><code>y = f(Σ(wᵢ × xᵢ) + b)
 
-其中：
-- wᵢ 是第i个输入的权重
-- b 是偏置
-- f 是激活函数</code></pre>
+where:
+- wᵢ is the weight of the i-th input
+- b is the bias
+- f is the activation function</code></pre>
 
                     <h4>2.3 Python实现感知机</h4>
                     <pre><code>import numpy as np
