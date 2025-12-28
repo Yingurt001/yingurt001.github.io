@@ -194,6 +194,11 @@
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .photo-item-premium img[src=""],
+        .photo-item-premium:has(img[src=""]) {
+            display: none;
+        }
+
         .photo-item-premium::after {
             content: '';
             position: absolute;
@@ -418,8 +423,8 @@
 
     <!-- Featured Showcase - 星轨2 C位展示 -->
     <div class="featured-showcase" id="featuredShowcase">
-        <div class="featured-item" onclick="openLightbox('My Photos/Photos/Starry Sky/星轨2.28.jpg')">
-            <img src="My Photos/Photos/Starry Sky/星轨2.28.jpg" alt="Star Trail">
+        <div class="featured-item" onclick="openLightbox('My%20Photos/Photos/Starry%20Sky/星轨2.28.jpg')">
+            <img src="My%20Photos/Photos/Starry%20Sky/星轨2.28.jpg" alt="Star Trail">
             <div class="featured-label">Star Trail</div>
         </div>
     </div>
@@ -427,9 +432,9 @@
     <!-- Category Filter -->
     <div class="category-filter">
         <button class="category-btn active" data-category="all">All</button>
-        <button class="category-btn" data-category="starry">Starry Sky</button>
+        <button class="category-btn" data-category="starry">Starry%20Sky</button>
         <button class="category-btn" data-category="landscape">Landscape</button>
-        <button class="category-btn" data-category="sunset">Sunrise & Sunset</button>
+        <button class="category-btn" data-category="sunset">Sunrise%20%26%20Sunset</button>
         <button class="category-btn" data-category="waterfall">Waterfall</button>
         <button class="category-btn" data-category="town">Town</button>
         <button class="category-btn" data-category="portrait">Portrait</button>
@@ -441,107 +446,104 @@
     <div class="photo-gallery-premium" id="photoGallery">
         <!-- Starry Sky Photos -->
         <div class="photo-item-premium" data-category="starry">
-            <img src="My Photos/Photos/Starry Sky/IMG_6928.jpg" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/IMG_6928.jpg')">
+            <img src="My%20Photos/Photos/Starry%20Sky/IMG_6928.jpg" alt="Starry Sky" onclick="openLightbox('My%20Photos/Photos/Starry%20Sky/IMG_6928.jpg')">
         </div>
         <div class="photo-item-premium" data-category="starry">
-            <img src="My Photos/Photos/Starry Sky/IMG_7031.jpg" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/IMG_7031.jpg')">
+            <img src="My%20Photos/Photos/Starry%20Sky/IMG_7031.jpg" alt="Starry Sky" onclick="openLightbox('My%20Photos/Photos/Starry%20Sky/IMG_7031.jpg')">
         </div>
         <div class="photo-item-premium" data-category="starry">
-            <img src="My Photos/Photos/Starry Sky/星轨2.png" alt="Star Trail" onclick="openLightbox('My Photos/Photos/Starry Sky/星轨2.png')">
+            <img src="My%20Photos/Photos/Starry%20Sky/星轨2.png" alt="Star Trail" onclick="openLightbox('My%20Photos/Photos/Starry%20Sky/星轨2.png')">
         </div>
         <div class="photo-item-premium" data-category="starry">
-            <img src="My Photos/Photos/Starry Sky/呀呀呀1.png" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/呀呀呀1.png')">
-        </div>
-        <div class="photo-item-premium" data-category="starry">
-            <img src="My Photos/Photos/Starry Sky/图四.png" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/图四.png')">
+            <img src="My%20Photos/Photos/Starry%20Sky/图四.png" alt="Starry Sky" onclick="openLightbox('My%20Photos/Photos/Starry%20Sky/图四.png')">
         </div>
 
         <!-- Landscape Photos -->
         <div class="photo-item-premium" data-category="landscape">
-            <img src="My Photos/Photos/Landscape/IMG_2567.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2567.JPG')">
+            <img src="My%20Photos/Photos/Landscape/IMG_2567.JPG" alt="Landscape" onclick="openLightbox('My%20Photos/Photos/Landscape/IMG_2567.JPG')">
         </div>
         <div class="photo-item-premium" data-category="landscape">
-            <img src="My Photos/Photos/Landscape/IMG_2568.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2568.JPG')">
+            <img src="My%20Photos/Photos/Landscape/IMG_2568.JPG" alt="Landscape" onclick="openLightbox('My%20Photos/Photos/Landscape/IMG_2568.JPG')">
         </div>
         <div class="photo-item-premium" data-category="landscape">
-            <img src="My Photos/Photos/Landscape/IMG_2569.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2569.JPG')">
+            <img src="My%20Photos/Photos/Landscape/IMG_2569.JPG" alt="Landscape" onclick="openLightbox('My%20Photos/Photos/Landscape/IMG_2569.JPG')">
         </div>
         <div class="photo-item-premium" data-category="landscape">
-            <img src="My Photos/Photos/Landscape/IMG_3143.jpg" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_3143.jpg')">
+            <img src="My%20Photos/Photos/Landscape/IMG_3143.jpg" alt="Landscape" onclick="openLightbox('My%20Photos/Photos/Landscape/IMG_3143.jpg')">
         </div>
 
-        <!-- Sunrise & Sunset Photos -->
+        <!-- Sunrise%20%26%20Sunset Photos -->
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2460.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2460.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2460.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2460.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2548.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2548.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2548.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2548.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2553.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2553.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2553.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_2553.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3411.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3411.jpg')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3411.jpg" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3411.jpg')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3413.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3413.jpg')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3413.jpg" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3413.jpg')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3418.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3418.jpg')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3418.jpg" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_3418.jpg')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_6077.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_6077.jpg')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_6077.jpg" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_6077.jpg')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/DSC03165-3.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/DSC03165-3.jpg')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/DSC03165-3.jpg" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/DSC03165-3.jpg')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4464 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4464 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4464 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4464 2.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4492 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4492 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4492 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4492 2.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4460 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4460 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4460 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4460 2.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4436 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4436 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4436 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4436 2.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4417 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4417 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4417 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4417 2.JPG')">
         </div>
         <div class="photo-item-premium" data-category="sunset">
-            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4409 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4409 2.JPG')">
+            <img src="My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4409 2.JPG" alt="Sunrise alt="Sunrise%20%26%20Sunset" Sunset" onclick="openLightbox('My%20Photos/Photos/Sunrise%20%26%20Sunset/IMG_4409 2.JPG')">
         </div>
 
         <!-- Waterfall Photos -->
         <div class="photo-item-premium" data-category="waterfall">
-            <img src="My Photos/Photos/Water Fall/DSC00733.jpg" alt="Waterfall" onclick="openLightbox('My Photos/Photos/Water Fall/DSC00733.jpg')">
+            <img src="My%20Photos/Photos/Water%20Fall/DSC00733.jpg" alt="Waterfall" onclick="openLightbox('My%20Photos/Photos/Water%20Fall/DSC00733.jpg')">
         </div>
         <div class="photo-item-premium" data-category="waterfall">
-            <img src="My Photos/Photos/Water Fall/DSC03242-52.jpg" alt="Waterfall" onclick="openLightbox('My Photos/Photos/Water Fall/DSC03242-52.jpg')">
+            <img src="My%20Photos/Photos/Water%20Fall/DSC03242-52.jpg" alt="Waterfall" onclick="openLightbox('My%20Photos/Photos/Water%20Fall/DSC03242-52.jpg')">
         </div>
 
         <!-- Town Photos -->
         <div class="photo-item-premium" data-category="town">
-            <img src="My Photos/Photos/Town/DSC03209-38.jpg" alt="Town" onclick="openLightbox('My Photos/Photos/Town/DSC03209-38.jpg')">
+            <img src="My%20Photos/Photos/Town/DSC03209-38.jpg" alt="Town" onclick="openLightbox('My%20Photos/Photos/Town/DSC03209-38.jpg')">
         </div>
         <div class="photo-item-premium" data-category="town">
-            <img src="My Photos/Photos/Town/DSC03205-36.jpg" alt="Town" onclick="openLightbox('My Photos/Photos/Town/DSC03205-36.jpg')">
+            <img src="My%20Photos/Photos/Town/DSC03205-36.jpg" alt="Town" onclick="openLightbox('My%20Photos/Photos/Town/DSC03205-36.jpg')">
         </div>
 
         <!-- Portrait Photos -->
         <div class="photo-item-premium" data-category="portrait">
-            <img src="My Photos/Photos/Me/DSC03175-11.jpg" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/DSC03175-11.jpg')">
+            <img src="My%20Photos/Photos/Me/DSC03175-11.jpg" alt="Portrait" onclick="openLightbox('My%20Photos/Photos/Me/DSC03175-11.jpg')">
         </div>
         <div class="photo-item-premium" data-category="portrait">
-            <img src="My Photos/Photos/Me/IMG_4499.JPG" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/IMG_4499.JPG')">
+            <img src="My%20Photos/Photos/Me/IMG_4499.JPG" alt="Portrait" onclick="openLightbox('My%20Photos/Photos/Me/IMG_4499.JPG')">
         </div>
         <div class="photo-item-premium" data-category="portrait">
-            <img src="My Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png')">
+            <img src="My%20Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png" alt="Portrait" onclick="openLightbox('My%20Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png')">
         </div>
         <div class="photo-item-premium" data-category="portrait">
-            <img src="My Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png')">
+            <img src="My%20Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png" alt="Portrait" onclick="openLightbox('My%20Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png')">
         </div>
 
         <!-- Video Items -->
@@ -584,9 +586,18 @@
         function updatePhotoCount(category) {
             let count = 0;
             if (category === 'all') {
-                count = photoItems.length;
+                // Count only visible items (not hidden and not display:none)
+                count = Array.from(photoItems).filter(item => 
+                    !item.classList.contains('hidden') && 
+                    item.style.display !== 'none' &&
+                    window.getComputedStyle(item).display !== 'none'
+                ).length;
             } else {
-                count = document.querySelectorAll(`.photo-item-premium[data-category="${category}"]:not(.hidden)`).length;
+                count = Array.from(document.querySelectorAll(`.photo-item-premium[data-category="${category}"]`)).filter(item => 
+                    !item.classList.contains('hidden') && 
+                    item.style.display !== 'none' &&
+                    window.getComputedStyle(item).display !== 'none'
+                ).length;
             }
             if (category === 'video') {
                 photoCount.textContent = `${count} ${count === 1 ? 'Video' : 'Videos'}`;
@@ -630,6 +641,36 @@
 
         // Initialize count
         updatePhotoCount('all');
+
+        // Handle image loading errors - hide images that don't exist
+        function handleImageError(img) {
+            // Hide the parent photo-item-premium container
+            const photoItem = img.closest('.photo-item-premium');
+            if (photoItem) {
+                photoItem.style.display = 'none';
+                photoItem.classList.add('hidden');
+            }
+            // Handle featured item
+            const featuredItem = img.closest('.featured-item');
+            if (featuredItem) {
+                featuredItem.style.display = 'none';
+            }
+            // Update photo count after hiding
+            setTimeout(() => {
+                const activeCategory = document.querySelector('.category-btn.active')?.getAttribute('data-category') || 'all';
+                updatePhotoCount(activeCategory);
+            }, 100);
+        }
+
+        // Add error handlers to all images when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const allImages = document.querySelectorAll('.photo-item-premium img, .featured-item img');
+            allImages.forEach(img => {
+                img.onerror = function() {
+                    handleImageError(this);
+                };
+            });
+        });
 
         // Lightbox Functions
         function openLightbox(imageSrc) {
