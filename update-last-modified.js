@@ -94,7 +94,8 @@ const htmlFiles = [
     'experience.html',
     'honors.html',
     'cv.html',
-    'talks.html'
+    'talks.html',
+    'photography.html'
 ];
 
 // 更新所有文件

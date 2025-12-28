@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography - Ying Zhang</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Photography Page Specific Styles - Premium Design */
+        .photography-page {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .photography-hero {
+            padding: 4rem 2rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .photography-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .photography-hero p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-btn:hover::before {
+            left: 0;
+        }
+
+        .category-btn.active {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Featured Star Trail - C位展示 */
+        .featured-showcase {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .featured-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .featured-item:hover {
+            transform: scale(1.02);
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .featured-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .featured-label {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .photo-gallery-premium {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-item-premium {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .photo-item-premium:nth-child(1) { animation-delay: 0.05s; }
+        .photo-item-premium:nth-child(2) { animation-delay: 0.1s; }
+        .photo-item-premium:nth-child(3) { animation-delay: 0.15s; }
+        .photo-item-premium:nth-child(4) { animation-delay: 0.2s; }
+        .photo-item-premium:nth-child(5) { animation-delay: 0.25s; }
+        .photo-item-premium:nth-child(6) { animation-delay: 0.3s; }
+        .photo-item-premium:nth-child(7) { animation-delay: 0.35s; }
+        .photo-item-premium:nth-child(8) { animation-delay: 0.4s; }
+        .photo-item-premium:nth-child(9) { animation-delay: 0.45s; }
+        .photo-item-premium:nth-child(10) { animation-delay: 0.5s; }
+        .photo-item-premium:nth-child(11) { animation-delay: 0.55s; }
+        .photo-item-premium:nth-child(12) { animation-delay: 0.6s; }
+        .photo-item-premium:nth-child(13) { animation-delay: 0.65s; }
+        .photo-item-premium:nth-child(14) { animation-delay: 0.7s; }
+        .photo-item-premium:nth-child(15) { animation-delay: 0.75s; }
+        .photo-item-premium:nth-child(16) { animation-delay: 0.8s; }
+        .photo-item-premium:nth-child(17) { animation-delay: 0.85s; }
+        .photo-item-premium:nth-child(18) { animation-delay: 0.9s; }
+        .photo-item-premium:nth-child(19) { animation-delay: 0.95s; }
+        .photo-item-premium:nth-child(20) { animation-delay: 1.0s; }
+        .photo-item-premium:nth-child(21) { animation-delay: 1.05s; }
+        .photo-item-premium:nth-child(22) { animation-delay: 1.1s; }
+        .photo-item-premium:nth-child(23) { animation-delay: 1.15s; }
+        .photo-item-premium:nth-child(24) { animation-delay: 1.2s; }
+        .photo-item-premium:nth-child(25) { animation-delay: 1.25s; }
+        .photo-item-premium:nth-child(26) { animation-delay: 1.3s; }
+        .photo-item-premium:nth-child(27) { animation-delay: 1.35s; }
+        .photo-item-premium:nth-child(28) { animation-delay: 1.4s; }
+        .photo-item-premium:nth-child(29) { animation-delay: 1.45s; }
+        .photo-item-premium:nth-child(30) { animation-delay: 1.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .photo-item-premium img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item-premium::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .photo-item-premium:hover img {
+            transform: scale(1.08);
+        }
+
+        .photo-item-premium:hover::after {
+            opacity: 1;
+        }
+
+        .photo-item-premium.hidden {
+            display: none;
+        }
+
+        /* Premium Lightbox */
+        .lightbox-premium {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-premium.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content-premium {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lightbox-premium.active .lightbox-content-premium {
+            transform: scale(1);
+        }
+
+        .lightbox-close-premium {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #fff;
+            font-size: 48px;
+            font-weight: 300;
+            cursor: pointer;
+            z-index: 10001;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close-premium:hover {
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-count {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Video Item with Play Icon */
+        .photo-item-premium.video-item {
+            position: relative;
+        }
+
+        .video-play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-play-overlay::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 25px solid #000;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .photo-item-premium.video-item:hover .video-play-overlay {
+            background: rgba(255, 255, 255, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .photography-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .photo-gallery-premium {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+                padding: 0 1rem 2rem;
+            }
+
+            .category-filter {
+                gap: 0.8rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .featured-showcase {
+                padding: 0 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .featured-label {
+                bottom: 15px;
+                left: 15px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .video-play-overlay {
+                width: 60px;
+                height: 60px;
+            }
+
+            .video-play-overlay::before {
+                border-left: 18px solid #000;
+                border-top: 12px solid transparent;
+                border-bottom: 12px solid transparent;
+            }
+        }
+    </style>
+</head>
+<body class="photography-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="index.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                    Home
+                </a>
+                <a href="publications.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg>
+                    Publications
+                </a>
+                <a href="education.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 01.787 1.838L7.667 13.088l1.94.831a1 1 0 01.787 1.838l-7 3a1 1 0 01-.788 0l-7-3a1 1 0 010-1.838l1.94-.831L2.333 9.088l-1.94-.831a1 1 0 010-1.838l7-3z"></path></svg>
+                    Education
+                </a>
+                <a href="experience.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path></svg>
+                    Experience
+                </a>
+                <a href="honors.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    Honors & Awards
+                </a>
+                <a href="cv.html">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"></path></svg>
+                    CV
+                </a>
+                <a href="photography.html" class="active">
+                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg>
+                    Photography
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="photography-hero">
+        <h1>PHOTOGRAPHY</h1>
+        <p>
+            Through the lens, I capture moments that tell stories. Each photograph is a window into 
+            a unique perspective, exploring the interplay of light, composition, and emotion. 
+            This collection represents my journey in visual storytelling.
+        </p>
+    </div>
+
+    <!-- Featured Showcase - 星轨2 C位展示 -->
+    <div class="featured-showcase" id="featuredShowcase">
+        <div class="featured-item" onclick="openLightbox('My Photos/Photos/Starry Sky/星轨2.28.jpg')">
+            <img src="My Photos/Photos/Starry Sky/星轨2.28.jpg" alt="Star Trail">
+            <div class="featured-label">Star Trail</div>
+        </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="category-filter">
+        <button class="category-btn active" data-category="all">All</button>
+        <button class="category-btn" data-category="starry">Starry Sky</button>
+        <button class="category-btn" data-category="landscape">Landscape</button>
+        <button class="category-btn" data-category="sunset">Sunrise & Sunset</button>
+        <button class="category-btn" data-category="waterfall">Waterfall</button>
+        <button class="category-btn" data-category="town">Town</button>
+        <button class="category-btn" data-category="portrait">Portrait</button>
+        <button class="category-btn" data-category="video">Video</button>
+    </div>
+
+
+    <!-- Photo Gallery -->
+    <div class="photo-gallery-premium" id="photoGallery">
+        <!-- Starry Sky Photos -->
+        <div class="photo-item-premium" data-category="starry">
+            <img src="My Photos/Photos/Starry Sky/IMG_6928.jpg" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/IMG_6928.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="starry">
+            <img src="My Photos/Photos/Starry Sky/IMG_7031.jpg" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/IMG_7031.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="starry">
+            <img src="My Photos/Photos/Starry Sky/星轨2.png" alt="Star Trail" onclick="openLightbox('My Photos/Photos/Starry Sky/星轨2.png')">
+        </div>
+        <div class="photo-item-premium" data-category="starry">
+            <img src="My Photos/Photos/Starry Sky/呀呀呀1.png" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/呀呀呀1.png')">
+        </div>
+        <div class="photo-item-premium" data-category="starry">
+            <img src="My Photos/Photos/Starry Sky/图四.png" alt="Starry Sky" onclick="openLightbox('My Photos/Photos/Starry Sky/图四.png')">
+        </div>
+
+        <!-- Landscape Photos -->
+        <div class="photo-item-premium" data-category="landscape">
+            <img src="My Photos/Photos/Landscape/IMG_2567.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2567.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="landscape">
+            <img src="My Photos/Photos/Landscape/IMG_2568.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2568.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="landscape">
+            <img src="My Photos/Photos/Landscape/IMG_2569.JPG" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_2569.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="landscape">
+            <img src="My Photos/Photos/Landscape/IMG_3143.jpg" alt="Landscape" onclick="openLightbox('My Photos/Photos/Landscape/IMG_3143.jpg')">
+        </div>
+
+        <!-- Sunrise & Sunset Photos -->
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2460.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2460.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2548.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2548.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_2553.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_2553.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3411.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3411.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3413.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3413.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_3418.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_3418.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_6077.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_6077.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/DSC03165-3.jpg" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/DSC03165-3.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4464 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4464 2.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4492 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4492 2.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4460 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4460 2.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4436 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4436 2.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4417 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4417 2.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="sunset">
+            <img src="My Photos/Photos/Sunrise & Sunset/IMG_4409 2.JPG" alt="Sunrise & Sunset" onclick="openLightbox('My Photos/Photos/Sunrise & Sunset/IMG_4409 2.JPG')">
+        </div>
+
+        <!-- Waterfall Photos -->
+        <div class="photo-item-premium" data-category="waterfall">
+            <img src="My Photos/Photos/Water Fall/DSC00733.jpg" alt="Waterfall" onclick="openLightbox('My Photos/Photos/Water Fall/DSC00733.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="waterfall">
+            <img src="My Photos/Photos/Water Fall/DSC03242-52.jpg" alt="Waterfall" onclick="openLightbox('My Photos/Photos/Water Fall/DSC03242-52.jpg')">
+        </div>
+
+        <!-- Town Photos -->
+        <div class="photo-item-premium" data-category="town">
+            <img src="My Photos/Photos/Town/DSC03209-38.jpg" alt="Town" onclick="openLightbox('My Photos/Photos/Town/DSC03209-38.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="town">
+            <img src="My Photos/Photos/Town/DSC03205-36.jpg" alt="Town" onclick="openLightbox('My Photos/Photos/Town/DSC03205-36.jpg')">
+        </div>
+
+        <!-- Portrait Photos -->
+        <div class="photo-item-premium" data-category="portrait">
+            <img src="My Photos/Photos/Me/DSC03175-11.jpg" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/DSC03175-11.jpg')">
+        </div>
+        <div class="photo-item-premium" data-category="portrait">
+            <img src="My Photos/Photos/Me/IMG_4499.JPG" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/IMG_4499.JPG')">
+        </div>
+        <div class="photo-item-premium" data-category="portrait">
+            <img src="My Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/Screenshot 2025-01-29 at 20.25.57.png')">
+        </div>
+        <div class="photo-item-premium" data-category="portrait">
+            <img src="My Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png" alt="Portrait" onclick="openLightbox('My Photos/Photos/Me/Screenshot 2025-01-29 at 20.24.58.png')">
+        </div>
+
+        <!-- Video Items -->
+        <div class="photo-item-premium video-item" data-category="video" onclick="window.open('https://youtu.be/VQMQLSDd8AY?si=B4fBxMU3GG9IqrVi', '_blank')">
+            <img src="https://img.youtube.com/vi/VQMQLSDd8AY/maxresdefault.jpg" alt="Photography Video">
+            <div class="video-play-overlay"></div>
+        </div>
+    </div>
+
+    <div class="photo-count" id="photoCount"></div>
+
+    <!-- Premium Lightbox -->
+    <div id="lightbox" class="lightbox-premium" onclick="closeLightbox(event)">
+        <span class="lightbox-close-premium" onclick="closeLightbox(event)">&times;</span>
+        <img class="lightbox-content-premium" id="lightbox-img" src="" alt="Photography" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" title="Google Scholar"><img src="https://img.icons8.com/color/24/000000/google-scholar.png" alt="Google Scholar"></a>
+                <a href="#" title="DBLP"><img src="https://img.icons8.com/color/24/000000/database.png" alt="DBLP"></a>
+                <a href="#" title="Twitter"><img src="https://img.icons8.com/color/24/000000/twitter.png" alt="Twitter"></a>
+                <a href="#" title="LinkedIn"><img src="https://img.icons8.com/color/24/000000/linkedin.png" alt="LinkedIn"></a>
+                <a href="#" title="GitHub"><img src="https://img.icons8.com/color/24/000000/github.png" alt="GitHub"></a>
+                <a href="https://orcid.org/0009-0000-2900-9197" target="_blank" title="ORCID"><img src="https://upload.wikimedia.org/wikipedia/commons/archive/f/f7/20160723044737%21Orcid_icon.png" alt="ORCID"></a>
+            </div>
+            <div class="footer-copyright">© Ying Zhang</div>
+        </div>
+    </footer>
+
+    <script>
+        // Category Filter Functionality
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const photoItems = document.querySelectorAll('.photo-item-premium');
+        const featuredShowcase = document.getElementById('featuredShowcase');
+        const photoCount = document.getElementById('photoCount');
+
+        function updatePhotoCount(category) {
+            let count = 0;
+            if (category === 'all') {
+                count = photoItems.length;
+            } else {
+                count = document.querySelectorAll(`.photo-item-premium[data-category="${category}"]:not(.hidden)`).length;
+            }
+            if (category === 'video') {
+                photoCount.textContent = `${count} ${count === 1 ? 'Video' : 'Videos'}`;
+            } else {
+                photoCount.textContent = `${count} ${count === 1 ? 'Photo' : 'Photos'}`;
+            }
+        }
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show/hide featured showcase based on category
+                if (category === 'all' || category === 'starry') {
+                    featuredShowcase.style.display = 'block';
+                } else {
+                    featuredShowcase.style.display = 'none';
+                }
+
+                // Filter photos and videos
+                photoItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.classList.remove('hidden');
+                        item.style.animation = 'none';
+                        setTimeout(() => {
+                            item.style.animation = '';
+                        }, 10);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Update count
+                setTimeout(() => updatePhotoCount(category), 100);
+            });
+        });
+
+        // Initialize count
+        updatePhotoCount('all');
+
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imageSrc;
+            setTimeout(() => {
+                lightbox.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close-premium')) {
+                return;
+            }
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
