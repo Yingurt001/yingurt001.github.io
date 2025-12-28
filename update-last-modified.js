@@ -87,7 +87,7 @@ function updateLastUpdated(htmlFile) {
 // 获取所有 HTML 文件
 const htmlFiles = [
     'index.html',
-    // 'personal.html',
+    'personal.html',
     'publications.html',
     'education.html',
     'service.html',
