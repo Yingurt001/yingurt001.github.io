@@ -1,0 +1,34 @@
+# 源图片文件（不需要上传）
+My Photos/Landscape/
+My Photos/Me/
+My Photos/Starry Sky/
+My Photos/Sunrise & Sunset/
+My Photos/Town/
+My Photos/Water Fall/
+My Photos/Sunrise Video/
+
+# 压缩脚本（不需要上传）
+compress_my_photos.py
+compress-images.sh
+regenerate_webp.py
+cleanup_source_images.py
+run_compress.py
+
+# 说明文档（不需要上传）
+图片压缩说明.md
+上传清单.md
+
+# macOS 系统文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# 临时文件
+*.tmp
+*.log
+
+# 只保留 WebP 文件
+# My Photos/web/ 和 My Photos/thumbs/ 需要上传
+
