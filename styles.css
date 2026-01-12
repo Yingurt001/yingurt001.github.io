@@ -757,3 +757,24 @@ body {
     }
 }
 
+/* Hide ClustrMaps widget - invisible visitor tracking */
+/* Hide the script tag container and all ClustrMaps generated elements */
+#clstr_globe,
+#clstr_globe *,
+[id*="clstr"],
+[class*="clstr"],
+iframe[src*="clustrmaps"],
+iframe[src*="clustr"],
+div[id*="clustr"],
+div[class*="clustr"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+}
+
