@@ -92,7 +92,7 @@ a:hover {
 .container {
     max-width: var(--measure);
     margin: 0 auto;
-    padding: 3rem 1.5rem 0;
+    padding: 2.25rem 1.5rem 0;
     display: block;
 }
 
@@ -101,7 +101,7 @@ a:hover {
     display: flex;
     align-items: flex-start;
     gap: 1.75rem;
-    margin-bottom: 2.75rem;
+    margin-bottom: 1.75rem;
 }
 
 .profile-img {
@@ -233,9 +233,9 @@ a:hover {
     color: var(--text);
     text-transform: none;
     letter-spacing: 0;
-    margin-top: 2.75rem;
-    margin-bottom: 1.1rem;
-    padding-bottom: 0.4rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.35rem;
     border-bottom: 1px solid var(--rule);
 }
 
@@ -248,8 +248,8 @@ a:hover {
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--text);
-    margin-top: 2rem;
-    margin-bottom: 0.9rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .content p {
@@ -296,7 +296,7 @@ a:hover {
 .pub-note {
     font-size: 0.88rem;
     color: var(--muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Publications */
