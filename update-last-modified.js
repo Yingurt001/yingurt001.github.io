@@ -89,10 +89,8 @@ const htmlFiles = [
     'index.html',
     // 'personal.html',
     'publications.html',
-    'education.html',
     'service.html',
     'experience.html',
-    'honors.html',
     'cv.html',
     'talks.html',
     'photography.html'
