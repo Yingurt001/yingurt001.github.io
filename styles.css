@@ -107,11 +107,14 @@ a:hover {
 .profile-img {
     width: 132px;
     height: 132px;
-    border-radius: 50%;
+    border-radius: 3px;
     object-fit: cover;
     object-position: center center;
     border: none;
     flex-shrink: 0;
+    /* aligns the avatar's top edge with the cap height of the h1 beside it:
+       2.28px half-leading + 8.66px ascent-to-cap gap in Source Serif 4 */
+    margin-top: 0.68rem;
 }
 
 .profile-meta {
@@ -125,6 +128,7 @@ a:hover {
     font-weight: 600;
     color: var(--text);
     letter-spacing: -0.01em;
+    line-height: 1.15;
     margin-bottom: 0.35rem;
 }
 
@@ -507,6 +511,7 @@ a:hover {
     .profile-img {
         width: 108px;
         height: 108px;
+        margin-top: 0;
     }
 
     .nav-links {
