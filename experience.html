@@ -29,9 +29,9 @@
         <aside class="sidebar">
             <img src="images/profile.png" alt="Ying Zhang" class="profile-img">
             <h1>Ying Zhang</h1>
-            <p class="title">Undergraduate Student</p>
-            <p class="affiliation">School of Mathematical Sciences<br>University of Nottingham</p>
-            <p class="address">Nottingham<br>United Kingdom</p>
+            <p class="title">Incoming MPhil Student</p>
+            <p class="affiliation">Data Intensive Science<br>Lucy Cavendish College<br>University of Cambridge</p>
+            <p class="address">Cambridge<br>United Kingdom</p>
             <div class="email">
                 <a href="mailto:Yingurt@Outlook.com">Yingurt@Outlook.com</a>
                 <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20" onclick="copyEmail()">
@@ -46,13 +46,65 @@
                 <a href="#" title="LinkedIn"><img src="https://img.icons8.com/color/32/000000/linkedin.png" alt="LinkedIn"></a>
                 <a href="https://orcid.org/0009-0000-2900-9197" target="_blank" title="ORCID"><img src="https://upload.wikimedia.org/wikipedia/commons/archive/f/f7/20160723044737%21Orcid_icon.png" alt="ORCID"></a>
             </div>
-                     <p class="last-updated">Last Updated: January 12, 2026</p>
+                     <p class="last-updated">Last Updated: September 5, 2026</p>
         </aside>
 
         <main class="content">
             <h2>EXPERIENCE</h2>
 
             <h3>Research Experience</h3>
+
+            <div class="experience-item">
+                <div class="job-title">Compressed Latent Diffusion Language Models (CLDLM)</div>
+                <div class="company">Research Intern, ZJU&ndash;UIUC Institute &mdash; co-author manuscript under review, NeurIPS 2026 Workshop</div>
+                <div class="job-info">
+                    <p>&bull; Addressed length-compressed diffusion language modeling, where prior two-stage pipelines fix an autoencoder before training the generative model, by jointly training a compressor, a Flow Matching model, and a token decoder end to end so the compressed representation adapts to generation.</p>
+                    <p>&bull; Coupled JEPA-style joint-embedding prediction with Flow Matching by using the Flow Matching model itself as the predictor at the final noise step, so one network both predicts and denoises the compressed embedding during generation.</p>
+                    <p>&bull; Benchmarked against seven autoregressive, discrete-diffusion, and flow-based baselines including ELF on LM1B and OpenWebText with five-seed evaluation, achieving the lowest generation perplexity and highest throughput among all diffusion and flow models &mdash; 26.20 Gen-PPL on OpenWebText at 2.4&times; ELF's throughput (10,511 vs. 4,416 tokens/s).</p>
+                </div>
+                <div class="job-meta">
+                    <div></div>
+                    <div>
+                        <div class="job-dates">Jul 2026 &ndash; Sep 2026</div>
+                        <div class="job-location">Hangzhou, CN</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">When Early Is Not Early: The Precursor Illusion in Time-Series Anomaly Detection</div>
+                <div class="company">Research Intern, Tsinghua University &mdash; co-first-author manuscript under review, AAAI 2027</div>
+                <div class="job-info">
+                    <p>&bull; Formalised the precursor illusion, where pre-onset labels are defined by temporal position alone and point adjustment is applied, causing reactive detectors to appear to deliver advance warning they never had.</p>
+                    <p>&bull; Designed a model-agnostic, placebo-calibrated test for whether pre-onset intervals actually contain detectable evidence, finding that fewer than one in seven benchmark events qualify once the placebo baseline is subtracted.</p>
+                    <p>&bull; Showed that after multiplicity correction none of 35 model&ndash;dataset cells across 7 detectors discriminates precursor from matched normal windows, while point adjustment inflates mean detection F1 from 0.186 to 0.549 with scores and thresholds held fixed.</p>
+                </div>
+                <div class="job-meta">
+                    <div></div>
+                    <div>
+                        <div class="job-dates">Apr 2026 &ndash; Aug 2026</div>
+                        <div class="job-location">Beijing, CN</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="job-title">Klein Neural Networks++: Closed-Form Layers on the Klein Model of Hyperbolic Space</div>
+                <div class="company">Research Intern, University of Trento &mdash; first-author manuscript under review, NeurIPS 2026</div>
+                <div class="job-info">
+                    <p>&bull; Derived a closed-form Klein batch normalisation that replaces the iterative Fr&eacute;chet mean required by prior gyrogroup BN with a single-pass Einstein midpoint, removing the inner optimisation loop at negligible accuracy cost.</p>
+                    <p>&bull; Developed the first systematic set of intrinsic Klein layers, spanning classification, fully connected, and normalisation heads in both geodesic and horosphere form, from a single Klein hyperplane distance. The model had stayed unexplored while the field standardised on the Poincar&eacute; ball and Lorentz hyperboloid, despite being the only one of the three admitting both Euclidean geodesics and a closed-form midpoint.</p>
+                    <p>&bull; Benchmarked against Poincar&eacute;, Lorentz, and PV counterparts on image classification (CIFAR-10/100, Tiny-ImageNet, ImageNet-1k), graph link prediction, and node classification, where Klein matches or improves on all three while remaining stable under feature clipping, curvature mis-specification, and gradient scaling.</p>
+                </div>
+                <div class="job-meta">
+                    <div></div>
+                    <div>
+                        <div class="job-dates">Oct 2025 &ndash; Apr 2026</div>
+                        <div class="job-location">Trento, Italy</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="experience-item">
                 <div class="job-title">Simulation Based Amortised Inference (SBI) using Neural Posterior Estimation</div>
                 <div class="company">Research Intern funded by Engineering and Physical Sciences Research Council (EPSRC)</div>
@@ -80,7 +132,7 @@
 
             <div class="experience-item">
                 <div class="job-title">Kolmogorov–Arnold GRU and LSTM for Loan Default Early Prediction</div>
-                <div class="company">Co-Author – under review at Journal of Applied Soft Computing; accepted at CSCR 2024</div>
+                <div class="company">Co-Author &mdash; accepted at Applied Soft Computing 2025 (arXiv:2507.13685)</div>
                 <div class="job-info">
                     <p>• Developed GRU-KAN and LSTM-KAN architectures for early loan default detection (3–8 months ahead), achieved +12% AUC over GRU baseline, sustaining >92% accuracy at 3-month and >88% at 8-month horizons in OOT tests.</p>
                     <p>• Engineered borrower time-series features with out-of-time splits and "blank-interval" simulation to mimic real-world prediction scenarios using Freddie Mac Single-Family Loan-Level data, demonstrated utility for bank risk mitigation.</p>
@@ -144,7 +196,7 @@
 
             <div class="experience-item">
                 <div class="job-title">Transformer-Enhanced BiLSTM for Post-Loan Default Prediction</div>
-                <div class="company">Co-Author – under review at Journal of Information System Frontiers</div>
+                <div class="company">Co-Author &mdash; accepted at CSCR III 2024 (arXiv:2508.00415)</div>
                 <div class="job-info">
                     <p>• Developed a Transformer–BiLSTM architecture for post-issuance credit risk profiling, integrating borrower repayment trajectories with macroeconomic signals via sliding-window and interval-masking features methods.</p>
                     <p>• Engineered hierarchical temporal encoding combining short-term behavioural shifts with long-range loan history, supported by an automated preprocessing pipeline for 20M+ loan records, reduced manual feature engineering time.</p>
@@ -303,7 +355,7 @@
                     <div></div>
                     <div>
                         <div class="job-dates">Sep 2023 − May 2024</div>
-                        <div class="job-location">Ningbo, UK</div>
+                        <div class="job-location">Ningbo, CN</div>
                     </div>
                 </div>
             </div>
@@ -322,6 +374,14 @@
                         <div class="job-dates">Jun – Aug 2024</div>
                         <div class="job-location">Guangzhou, CN</div>
                     </div>
+                </div>
+            </div>
+            <h3>Technical Skills</h3>
+            <div class="experience-item">
+                <div class="job-info">
+                    <p>&bull; <strong>Programming:</strong> Python (PyTorch, NumPy, SciPy, scikit-learn, geoopt), R, MATLAB, LaTeX, Git</p>
+                    <p>&bull; <strong>Research Computing:</strong> Slurm job arrays and multi-GPU training on Ada (Nottingham) and CINECA Leonardo (EuroHPC), plus mixed-precision and numerical-stability debugging</p>
+                    <p>&bull; <strong>Methods:</strong> Hyperbolic and Riemannian deep learning, normalizing flows, diffusion and score-based models, simulation-based inference, Bayesian inference, time-series anomaly detection</p>
                 </div>
             </div>
         </main>

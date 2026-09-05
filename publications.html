@@ -63,9 +63,9 @@
         <aside class="sidebar">
             <img src="images/profile.png" alt="Ying Zhang" class="profile-img">
             <h1>Ying Zhang</h1>
-            <p class="title">Undergraduate Student</p>
-            <p class="affiliation">School of Mathematical Sciences<br>University of Nottingham</p>
-            <p class="address">Nottingham<br>United Kingdom</p>
+            <p class="title">Incoming MPhil Student</p>
+            <p class="affiliation">Data Intensive Science<br>Lucy Cavendish College<br>University of Cambridge</p>
+            <p class="address">Cambridge<br>United Kingdom</p>
             <div class="email">
                 <a href="mailto:Yingurt@Outlook.com">Yingurt@Outlook.com</a>
                 <svg class="copy-icon" fill="currentColor" viewBox="0 0 20 20" onclick="copyEmail()">
@@ -80,7 +80,7 @@
                 <a href="#" title="LinkedIn"><img src="https://img.icons8.com/color/32/000000/linkedin.png" alt="LinkedIn"></a>
                 <a href="https://orcid.org/0009-0000-2900-9197" target="_blank" title="ORCID"><img src="https://upload.wikimedia.org/wikipedia/commons/archive/f/f7/20160723044737%21Orcid_icon.png" alt="ORCID"></a>
             </div>
-            <p class="last-updated">Last Updated: January 12, 2026</p>
+            <p class="last-updated">Last Updated: September 5, 2026</p>
         </aside>
 
         <main class="content">
@@ -94,18 +94,69 @@
                 </div>
             </div>
 
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 2rem;">* denotes equal contribution.</p>
+
+            <h3>Manuscripts Under Review</h3>
+
             <div class="publication-item">
                 <div class="publication-title">
-                    <a href="https://arxiv.org/abs/2507.13685">Kolmogorov–Arnold Networks-based GRU and LSTM for Loan Default Early Prediction</a>
+                    Klein Neural Networks++: Closed-Form Layers on the Klein Model of Hyperbolic Space
+                </div>
+                <div class="publication-authors">
+                    <strong>Ying Zhang</strong>, Nicu Sebe, Bernhard Sch&ouml;lkopf, Ziheng Chen
+                </div>
+                <div class="publication-venue">
+                    NeurIPS 2026, Under Review (first author)
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(1)">BibTex</button>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    When Early Is Not Early: The Precursor Illusion in Time-Series Anomaly Detection
+                </div>
+                <div class="publication-authors">
+                    Yue Yang*, <strong>Ying Zhang</strong>*, Yiwen Yan, Chen Zhang
+                </div>
+                <div class="publication-venue">
+                    AAAI 2027, Under Review (co-first author)
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(2)">BibTex</button>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    One Latent, Many Tokens: Jointly Learning Compressed Representations for Efficient Language Diffusion
+                </div>
+                <div class="publication-authors">
+                    Yulin Yuan, <strong>Ying Zhang</strong>, Xiangming Meng
+                </div>
+                <div class="publication-venue">
+                    NeurIPS 2026 Workshop, Under Review
+                </div>
+                <div class="publication-links">
+                    <button onclick="copyBibtex(3)">BibTex</button>
+                </div>
+            </div>
+
+            <h3>Published and Accepted</h3>
+
+            <div class="publication-item">
+                <div class="publication-title">
+                    <a href="https://arxiv.org/abs/2507.13685">Kolmogorov&ndash;Arnold Networks-based GRU and LSTM for Loan Default Early Prediction</a>
                 </div>
                 <div class="publication-authors">
                     Yue Yang, Zihan Su, <strong>Ying Zhang</strong>, Chang Chuan, Yuxiang Lin, Anthony Graham Bellotti, Boon Giin Lee
                 </div>
                 <div class="publication-venue">
-                    Journal of Applied Soft Computing 2025, Under Review (arXiv:2507.13685)
+                    Applied Soft Computing, 2025, Accepted (arXiv:2507.13685)
                 </div>
                 <div class="publication-links">
-                    <button onclick="copyBibtex(1)">BibTex</button>
+                    <button onclick="copyBibtex(4)">BibTex</button>
                     <a href="https://arxiv.org/abs/2507.13685" target="_blank">arXiv</a>
                 </div>
             </div>
@@ -121,7 +172,7 @@
                     The Third Credit Scoring and Credit Rating Conference (CSCR III), 2024, Accepted (arXiv:2508.00415)
                 </div>
                 <div class="publication-links">
-                    <button onclick="copyBibtex(2)">BibTex</button>
+                    <button onclick="copyBibtex(5)">BibTex</button>
                     <a href="https://arxiv.org/abs/2508.00415" target="_blank">arXiv</a>
                 </div>
             </div>
@@ -152,16 +203,37 @@
 
         function copyBibtex(id) {
             const bibtexEntries = {
-                1: `@article{yang2025kolmogorov,
+                1: `@inproceedings{zhang2026klein,
+  title={Klein Neural Networks++: Closed-Form Layers on the Klein Model of Hyperbolic Space},
+  author={Zhang, Ying and Sebe, Nicu and Sch{\"o}lkopf, Bernhard and Chen, Ziheng},
+  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},
+  year={2026},
+  note={Under Review}
+}`,
+                2: `@inproceedings{yang2027early,
+  title={When Early Is Not Early: The Precursor Illusion in Time-Series Anomaly Detection},
+  author={Yang, Yue and Zhang, Ying and Yan, Yiwen and Zhang, Chen},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2027},
+  note={Under Review. Yue Yang and Ying Zhang contributed equally}
+}`,
+                3: `@inproceedings{yuan2026onelatent,
+  title={One Latent, Many Tokens: Jointly Learning Compressed Representations for Efficient Language Diffusion},
+  author={Yuan, Yulin and Zhang, Ying and Meng, Xiangming},
+  booktitle={NeurIPS 2026 Workshop},
+  year={2026},
+  note={Under Review}
+}`,
+                4: `@article{yang2025kolmogorov,
   title={Kolmogorov--Arnold Networks-based GRU and LSTM for Loan Default Early Prediction},
   author={Yang, Yue and Su, Zihan and Zhang, Ying and Chuan, Chang and Lin, Yuxiang and Bellotti, Anthony Graham and Lee, Boon Giin},
-  journal={Journal of Applied Soft Computing},
+  journal={Applied Soft Computing},
   year={2025},
-  note={Under Review},
+  note={Accepted},
   eprint={2507.13685},
   archivePrefix={arXiv}
 }`,
-                2: `@inproceedings{yang2024transforming,
+                5: `@inproceedings{yang2024transforming,
   title={Transforming Credit Risk Analysis: A Time-Series-Driven ResE-BiLSTM Framework for Post-Loan Default Detection},
   author={Yang, Yue and Lin, Yuxiang and Zhang, Ying and Su, Zihan and Bellotti, Anthony Graham and Lee, Boon Giin},
   booktitle={The Third Credit Scoring and Credit Rating Conference (CSCR III)},
