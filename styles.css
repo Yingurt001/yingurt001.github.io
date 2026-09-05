@@ -107,7 +107,7 @@ a:hover {
 .profile-img {
     width: 132px;
     height: 132px;
-    border-radius: 3px;
+    border-radius: 50%;
     object-fit: cover;
     object-position: center center;
     border: none;
